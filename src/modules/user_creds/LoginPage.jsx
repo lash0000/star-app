@@ -1,3 +1,16 @@
+/***********************************************************************************************************************************************************************
+* File Name: LoginPage.jsx
+* Type of Program: Frontend
+* Description: Frontend page of login. 
+* Module: User Credentials
+* Author: lash0000
+* Date Created: Oct. 10, 2025
+***********************************************************************************************************************************************************************
+* Change History:
+* DATE                AUTHOR            LOG NUMBER     DESCRIPTION                                                      
+* Oct. 10, 2025       lash0000          001            Initial creation - STAR Phase 1 Project
+***********************************************************************************************************************************************************************/
+
 import { LoginForm } from "@/components/login-form";
 import { GalleryVerticalEnd } from "lucide-react"
 

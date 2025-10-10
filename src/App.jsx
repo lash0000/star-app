@@ -1,3 +1,16 @@
+/***********************************************************************************************************************************************************************
+* File Name: App.jsx
+* Type of Program: Root Application
+* Description: A standard root component of every React application. 
+* Module: Main
+* Author: lash0000
+* Date Created: Oct. 10, 2025
+***********************************************************************************************************************************************************************
+* Change History:
+* DATE                AUTHOR            LOG NUMBER     DESCRIPTION                                                      
+* Oct. 10, 2025       lash0000          001            Initial creation - STAR Phase 1 Project
+***********************************************************************************************************************************************************************/
+
 import { useState, useEffect, Fragment } from 'react';
 import { BrowserRouter as Router, Routes, Route, useLocation, useNavigate } from 'react-router-dom';
 import LandingRoutes from './routes/LandingRoutes';

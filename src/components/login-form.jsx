@@ -1,3 +1,16 @@
+/***********************************************************************************************************************************************************************
+* File Name: login-form.jsx
+* Type of Program: Frontend Layout
+* Description: Frontend layout Login Page. 
+* Module: User Credentials
+* Author: lash0000
+* Date Created: Oct. 10, 2025
+***********************************************************************************************************************************************************************
+* Change History:
+* DATE                AUTHOR            LOG NUMBER     DESCRIPTION                                                      
+* Oct. 10, 2025       lash0000          001            Initial creation - STAR Phase 1 Project
+***********************************************************************************************************************************************************************/
+
 import { cn } from "@/lib/utils"
 import { Button } from "@/components/ui/button"
 import {

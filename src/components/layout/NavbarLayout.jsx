@@ -1,3 +1,15 @@
+/***********************************************************************************************************************************************************************
+* File Name: NavbarLayout.jsx
+* Type of Program: Layout Route
+* Description: A Layout router for Landing page. 
+* Module: Public User
+* Author: lash0000
+* Date Created: Oct. 10, 2025
+***********************************************************************************************************************************************************************
+* Change History:
+* DATE                AUTHOR            LOG NUMBER     DESCRIPTION                                                      
+* Oct. 10, 2025       lash0000          001            Initial creation - STAR Phase 1 Project
+***********************************************************************************************************************************************************************/
 
 import { Fragment, useEffect, useRef } from 'react';
 import { NavLink, Outlet, Link, useNavigate } from 'react-router-dom';

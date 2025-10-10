@@ -1,3 +1,16 @@
+/***********************************************************************************************************************************************************************
+* File Name: VerifiedSuccessPage.jsx
+* Type of Program: Frontend
+* Description: Frontend page of Verified Email for New User. 
+* Module: User Credentials
+* Author: lash0000
+* Date Created: Oct. 10, 2025
+***********************************************************************************************************************************************************************
+* Change History:
+* DATE                AUTHOR            LOG NUMBER     DESCRIPTION                                                      
+* Oct. 10, 2025       lash0000          001            Initial creation - STAR Phase 1 Project
+***********************************************************************************************************************************************************************/
+
 import { VerifiedSuccess } from "@/components/verified-success-form";
 
 function VerifiedPage() {

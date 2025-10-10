@@ -1,3 +1,16 @@
+/***********************************************************************************************************************************************************************
+* File Name: SidebarLayout.jsx
+* Type of Program: Layout Route
+* Description: A Layout route for dashboard page. 
+* Module: Dashboard (User)
+* Author: lash0000
+* Date Created: Oct. 10, 2025
+***********************************************************************************************************************************************************************
+* Change History:
+* DATE                AUTHOR            LOG NUMBER     DESCRIPTION                                                      
+* Oct. 10, 2025       lash0000          001            Initial creation - STAR Phase 1 Project
+***********************************************************************************************************************************************************************/
+
 import { AppSidebar } from "@/components/app-sidebar"
 import {
   Breadcrumb,

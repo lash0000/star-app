@@ -1,3 +1,16 @@
+/***********************************************************************************************************************************************************************
+* File Name: LandingRoutes.jsx
+* Type of Program: Routing
+* Description: A React router dom for Landing page. 
+* Module: Public User
+* Author: lash0000
+* Date Created: Oct. 10, 2025
+***********************************************************************************************************************************************************************
+* Change History:
+* DATE                AUTHOR            LOG NUMBER     DESCRIPTION                                                      
+* Oct. 10, 2025       lash0000          001            Initial creation - STAR Phase 1 Project
+***********************************************************************************************************************************************************************/
+
 import NavbarLayout from '@/components/layout/NavbarLayout';
 import LandingPage from '@/modules/public_page/LandingPage';
 import ForgotPasswordPage from '@/modules/user_creds/ForgotPasswordPage';

@@ -1,3 +1,16 @@
+/***********************************************************************************************************************************************************************
+* File Name: index.css
+* Type of Program: Cascade Style Sheet
+* Description: A set of rules provided by shadcn during project creation. 
+* Module: Global Styles
+* Author: lash0000
+* Date Created: Oct. 10, 2025
+***********************************************************************************************************************************************************************
+* Change History:
+* DATE                AUTHOR            LOG NUMBER     DESCRIPTION                                                      
+* Oct. 10, 2025       lash0000          001            Initial creation - STAR Phase 1 Project
+***********************************************************************************************************************************************************************/
+
 @import "tailwindcss";
 @import "tw-animate-css";
 

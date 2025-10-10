@@ -1,3 +1,16 @@
+/***********************************************************************************************************************************************************************
+* File Name: SignUpPage.jsx
+* Type of Program: Frontend
+* Description: A frontend page for sign up page. 
+* Module: Public
+* Author: lash0000
+* Date Created: Oct. 10, 2025
+***********************************************************************************************************************************************************************
+* Change History:
+* DATE                AUTHOR            LOG NUMBER     DESCRIPTION                                                      
+* Oct. 10, 2025       lash0000          001            Initial creation - STAR Phase 1 Project
+***********************************************************************************************************************************************************************/
+
 import { SignupForm } from "@/components/signup-form";
 import { GalleryVerticalEnd } from "lucide-react"
 

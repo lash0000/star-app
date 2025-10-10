@@ -1,3 +1,18 @@
+/***********************************************************************************************************************************************************************
+* File Name: ForgotPasswordPage.jsx
+* Type of Program: Frontend
+* Description: Frontend page of Forgot Password. 
+* Module: User Credentials
+* Author: lash0000
+* Date Created: Oct. 10, 2025
+***********************************************************************************************************************************************************************
+* Change History:
+* DATE                AUTHOR            LOG NUMBER     DESCRIPTION                                                      
+* Oct. 10, 2025       lash0000          001            Initial creation - STAR Phase 1 Project
+***********************************************************************************************************************************************************************/
+
+
+
 import { VerifiedSuccess } from "@/components/verified-success-form";
 import { ForgotPasswordForm } from "@/components/forgot-password-form";
 

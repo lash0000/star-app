@@ -1,3 +1,16 @@
+/***********************************************************************************************************************************************************************
+* File Name: nav-main.jsx
+* Type of Program: Frontend Layout
+* Description: Frontend layout of Sidebar for Dashboard Page. 
+* Module: Dashboard (User)
+* Author: lash0000
+* Date Created: Oct. 10, 2025
+***********************************************************************************************************************************************************************
+* Change History:
+* DATE                AUTHOR            LOG NUMBER     DESCRIPTION                                                      
+* Oct. 10, 2025       lash0000          001            Initial creation - STAR Phase 1 Project
+***********************************************************************************************************************************************************************/
+
 import { ChevronRight } from "lucide-react";
 
 import {
