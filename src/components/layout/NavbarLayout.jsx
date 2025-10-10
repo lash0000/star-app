@@ -26,7 +26,8 @@ import {
   DrawerTrigger,
 } from "@/components/ui/drawer"
 import { RippleButton } from '../ui/ripple-button';
-import { Route } from 'lucide-react';
+import { Toaster } from "@/components/ui/sonner"
+import Footer from '../footer';
 
 function NavbarLayout() {
   const drawerCloseRef = useRef(null);
@@ -52,7 +53,7 @@ function NavbarLayout() {
 
   return (
     <Fragment>
-      <nav className="fixed top-0 left-0 w-full h-fit flex items-center justify-between sm:px-6 lg:px-16 py-3 font-medium bg-background z-50 border">
+      <nav className="fixed top-0 left-0 w-full h-fit flex items-center justify-between xs:px-6 lg:px-16 py-3 font-medium bg-background z-50 border">
         <div className="inline-flex items-center space-x-2 text-card-foreground selection:bg-card-foreground selection:text-white dark:selection:bg-card-foreground dark:selection:text-black">
           <div className="w-48">
             <img src="/philpro-white.png" alt="" className="w-auto" />
@@ -60,7 +61,7 @@ function NavbarLayout() {
         </div>
         <div className='flex items-center'>
           <div className="xs:hidden lg:block">
-            <div className="flex text-card-foreground selection:bg-card-foreground selection:text-white dark:selection:bg-card-foreground dark:selection:text-black gap-1.5">
+            <div className="flex text-card-foreground selection:bg-card-foreground selection:text-white dark:selection:bg-card-foreground dark:selection:text-black">
               <Button asChild variant="ghost">
                 <NavLink
                   onClick={() => scrollToId("staLucia-mainpage")}
@@ -113,15 +114,6 @@ function NavbarLayout() {
               </Button>
             </div>
           </div>
-          {/*      
-          <Button
-            variant="outline"
-            onClick={() => navigate("/login")}
-            className="text-card-foreground cursor-pointer"
-          >
-            <Box /> Login
-          </Button>
-          */}
           <Drawer>
             <DrawerTrigger>
               <Button size="icon" className="lg:hidden">
@@ -186,8 +178,10 @@ function NavbarLayout() {
       </nav>
       <main id="main-page" className='pt-28'>
         <Outlet />
+        <Toaster position="top-center" />
       </main>
       {/* add footer */}
+      <Footer />
     </Fragment>
   );
 }

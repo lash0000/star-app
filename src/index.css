@@ -57,6 +57,7 @@
   --color-sidebar-border: var(--sidebar-border);
   --color-sidebar-ring: var(--sidebar-ring);
   --animate-rippling: rippling var(--duration) ease-out;
+  --animate-pulse: pulse var(--duration) ease-out infinite;
 
   @keyframes rippling {
     0% {
@@ -66,6 +67,28 @@
     100% {
       transform: scale(2);
       opacity: 0;
+    }
+  }
+
+  @keyframes pulse {
+    0%,
+    100% {
+      boxShadow: 0 0 0 0 var(--pulse-color);
+    }
+
+    50% {
+      boxShadow: 0 0 0 8px var(--pulse-color);
+    }
+  }
+
+  @keyframes pulse {
+    0%,
+    100% {
+      boxShadow: 0 0 0 0 var(--pulse-color);
+    }
+
+    50% {
+      boxShadow: 0 0 0 8px var(--pulse-color);
     }
   }
 }

@@ -17,7 +17,7 @@ import LandingRoutes from './routes/LandingRoutes';
 import UserRoutes from './routes/UserRoutes';
 
 const pageTitles = {
-  "/": "On your own schdule begin your learning journey | Philproperties",
+  "/": "On your own schedule begins your learning journey | Philproperties",
   "/login": "Take the next step towards new learnings. Here at Philproperties",
 };
 
