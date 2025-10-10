@@ -14,7 +14,7 @@
 import { Fragment, useEffect, useRef } from 'react';
 import { NavLink, Outlet, Link, useNavigate } from 'react-router-dom';
 import { Button } from '@/components/ui/button';
-import { Moon, Sun, Equal, Download, Home, NotepadText, CircleUser, CroissantIcon, Box } from 'lucide-react';
+import { Moon, Sun, Equal, Download, Home, NotepadText, CircleUser, CroissantIcon, Box, DoorOpen } from 'lucide-react';
 import {
   Drawer,
   DrawerClose,
@@ -148,14 +148,6 @@ function NavbarLayout() {
                   <RippleButton rippleColor="#ADD8E6" className="w-full justify-start text-card-foreground" onClick={() => drawerCloseRef.current?.click()}>
                     <div className='flex items-center space-x-3'>
                       <CircleUser size={16} />
-                      <label>Services</label>
-                    </div>
-                  </RippleButton>
-                </Link>
-                <Link to="">
-                  <RippleButton rippleColor="#ADD8E6" className="w-full justify-start text-card-foreground" onClick={() => drawerCloseRef.current?.click()}>
-                    <div className='flex items-center space-x-3'>
-                      <CroissantIcon size={16} />
                       <label>Contacts</label>
                     </div>
                   </RippleButton>
@@ -164,7 +156,15 @@ function NavbarLayout() {
                   <RippleButton rippleColor="#ADD8E6" className="w-full justify-start text-card-foreground" onClick={() => drawerCloseRef.current?.click()}>
                     <div className='flex items-center space-x-3'>
                       <CroissantIcon size={16} />
-                      <label>Contacts</label>
+                      <label>FAQs</label>
+                    </div>
+                  </RippleButton>
+                </Link>
+                <Link to="">
+                  <RippleButton className="w-full justify-start bg-primary text-primary-foreground" onClick={() => drawerCloseRef.current?.click()}>
+                    <div className='flex items-center space-x-3'>
+                      <DoorOpen size={16} />
+                      <label>Sign in</label>
                     </div>
                   </RippleButton>
                 </Link>
