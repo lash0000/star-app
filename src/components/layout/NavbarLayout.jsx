@@ -28,8 +28,10 @@ import {
 import { RippleButton } from '../ui/ripple-button';
 import { Toaster } from "@/components/ui/sonner"
 import Footer from '../footer';
+import { useTheme } from '../ThemeProvider';
 
 function NavbarLayout() {
+  const { theme, toggleTheme } = useTheme();
   const drawerCloseRef = useRef(null);
 
   useEffect(() => {
@@ -56,12 +58,13 @@ function NavbarLayout() {
       <nav className="fixed top-0 left-0 w-full h-fit flex items-center justify-between xs:px-6 lg:px-16 py-3 font-medium bg-background z-50 border">
         <div className="inline-flex items-center space-x-2 text-card-foreground selection:bg-card-foreground selection:text-white dark:selection:bg-card-foreground dark:selection:text-black">
           <div className="w-48">
-            <img src="/philpro-white.png" alt="" className="w-auto" />
+            <img src="/philpro-white.png" alt="" className="block dark:hidden w-auto" />
+            <img src="/philpro-dark.png" alt="" className="hidden dark:block w-auto" />
           </div>
         </div>
         <div className='flex items-center'>
           <div className="xs:hidden lg:block">
-            <div className="flex text-card-foreground selection:bg-card-foreground selection:text-white dark:selection:bg-card-foreground dark:selection:text-black">
+            <div className="flex text-card-foreground selection:bg-card-foreground selection:text-white dark:selection:bg-card-foreground dark:selection:text-black gap-1.5">
               <Button asChild variant="ghost">
                 <NavLink
                   onClick={() => scrollToId("staLucia-mainpage")}
@@ -102,7 +105,7 @@ function NavbarLayout() {
                   FAQs
                 </NavLink>
               </Button>
-              <Button asChild>
+              <Button className="dark:bg-(--primary-green)" asChild>
                 <NavLink
                   onClick={() => scrollToId("contacts")}
                   className={({ isActive }) =>
@@ -112,14 +115,45 @@ function NavbarLayout() {
                   Sign in
                 </NavLink>
               </Button>
+              <Button
+                variant="outline"
+                onClick={toggleTheme}
+                className="text-card-foreground cursor-pointer"
+              >
+                {theme === 'light' ? (
+                  <>
+                    <Moon /> Dark
+                  </>
+                ) : (
+                  <>
+                    <Sun /> Light
+                  </>
+                )}
+              </Button>
             </div>
           </div>
           <Drawer>
+            <Button
+              variant="outline"
+              onClick={toggleTheme}
+              className="mr-3 text-card-foreground cursor-pointer lg:hidden"
+            >
+              {theme === 'light' ? (
+                <>
+                  <Moon /> Dark
+                </>
+              ) : (
+                <>
+                  <Sun /> Light
+                </>
+              )}
+            </Button>
             <DrawerTrigger>
               <Button size="icon" className="lg:hidden">
                 <Equal />
               </Button>
             </DrawerTrigger>
+
             <DrawerContent>
               <DrawerHeader>
                 <DrawerTitle className="text-lg">

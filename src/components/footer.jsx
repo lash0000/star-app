@@ -15,7 +15,7 @@ import { Link } from "react-router-dom"
 
 export default function Footer() {
   return (
-    <footer className="bg-muted border-t">
+    <footer className="bg-muted dark:bg-muted/20 border-t">
       <div className="lg:container lg:mx-auto xs:px-6 lg:px-16 py-12">
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 lg:gap-12">
           {/* Resources */}
@@ -77,21 +77,25 @@ export default function Footer() {
 
           {/* Logo */}
           <div className="flex items-start justify-start lg:justify-end">
-            <div className="flex items-center gap-2">
+            <div className="flex items-center gap-2 w-48">
               <img
                 src="/philpro-white.png"
                 alt="PhilProperties Logo"
-                className="w-48 object-cover p-1"
+                className="w-auto dark:hidden object-cover p-1"
               />
-
+              <img
+                src="/philpro-dark.png"
+                alt="PhilProperties Logo"
+                className="hidden dark:block w-auto object-cover p-1"
+              />
             </div>
           </div>
         </div>
 
       </div>
       {/* Copyright */}
-      <div className="p-8 border-t border-gray-200">
-        <p className="text-center text-gray-600 text-sm">
+      <div className="p-8 border-t">
+        <p className="text-center text-muted-foreground text-sm">
           &copy; {new Date().getFullYear()} Philproperties International Corporation. All rights reserved.
         </p>
       </div>
