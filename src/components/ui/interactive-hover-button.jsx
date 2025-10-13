@@ -20,7 +20,7 @@ export function InteractiveHoverButton({
       {...props}>
       {/* Normal State */}
       <div className="flex items-center justify-start gap-2">
-        <div className="bg-primary h-2 w-2 rounded-full transition-all duration-300 group-hover:scale-[300]" />
+        <div className="bg-primary size-2 rounded-full transition-all duration-300 group-hover:scale-[300]" />
         <span className="inline-flex items-center gap-2 transition-all duration-300 group-hover:translate-x-12 group-hover:opacity-0">
           {childArray.map((child, index) => (
             <React.Fragment key={index}>{child}</React.Fragment>
@@ -35,7 +35,7 @@ export function InteractiveHoverButton({
             <React.Fragment key={index}>{child}</React.Fragment>
           ))}
         </span>
-        <ArrowRight className="size-4 shrink-0" />
+        <ArrowRight className="size-4 shrink-0 xs:hidden lg:block" />
       </div>
     </button>
   )

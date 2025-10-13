@@ -27,7 +27,7 @@ const pageMetadata = {
     ogTitle: "On your own schedule, learning journey begins",
     ogDescription:
       "Still in development phase for Sales Training and Recruitment of Philproperites Corp.",
-    ogImage: "",
+    ogImage: "https://95306gu5u4.ufs.sh/f/uBRuoG2BEPFD7KSEgHPf2HyENZzXqhfcGpQsYtIMT9F5RWUC",
   },
   "/login": {
     title: "Login first! - Sales Training and Recruitment Online Course",
@@ -35,7 +35,7 @@ const pageMetadata = {
     keywords: "login, philproperties, training, onboarding",
     ogTitle: "Login first! - Sales Training and Recruitment Online Course",
     ogDescription: "Log in to access Sales Training and Recruitment services.",
-    ogImage: "",
+    ogImage: "https://95306gu5u4.ufs.sh/f/uBRuoG2BEPFD7KSEgHPf2HyENZzXqhfcGpQsYtIMT9F5RWUC",
   },
   "/dashboard": {
     title: "Take a breath while embracing your learnings",
@@ -45,7 +45,7 @@ const pageMetadata = {
     ogTitle: "Take a breath while embracing your learnings",
     ogDescription:
       "A dashboard page for client side; it contains available online courses.",
-    ogImage: "",
+    ogImage: "https://95306gu5u4.ufs.sh/f/uBRuoG2BEPFD7KSEgHPf2HyENZzXqhfcGpQsYtIMT9F5RWUC",
   },
 };
 
@@ -60,7 +60,7 @@ function TitleUpdater() {
       ogTitle:
         "On your own schedule learning journey begins | Sales Training and Recruitment Services by Philproperties Corp.",
       ogDescription: "This is still in development phase. Come back soon.",
-      ogImage: "https://your-site.com/images/default-og-image.jpg",
+      ogImage: "https://95306gu5u4.ufs.sh/f/uBRuoG2BEPFD7KSEgHPf2HyENZzXqhfcGpQsYtIMT9F5RWUC",
     };
 
   return (

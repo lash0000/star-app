@@ -57,7 +57,7 @@ function NavbarLayout() {
     <Fragment>
       <nav className="fixed top-0 left-0 w-full h-fit flex items-center justify-between xs:px-6 lg:px-16 py-3 font-medium bg-background z-50 border">
         <div className="inline-flex items-center space-x-2 text-card-foreground selection:bg-card-foreground selection:text-white dark:selection:bg-card-foreground dark:selection:text-black">
-          <div className="w-48">
+          <div className="xs:w-32 lg:w-48">
             <img src="/philpro-white.png" alt="" className="block dark:hidden w-auto" />
             <img src="/philpro-dark.png" alt="" className="hidden dark:block w-auto" />
           </div>
@@ -195,7 +195,7 @@ function NavbarLayout() {
                     </div>
                   </RippleButton>
                 </Link>
-                <Link to="">
+                <Link to="/login">
                   <RippleButton className="dark:bg-green-400 w-full justify-start bg-primary text-primary-foreground" onClick={() => drawerCloseRef.current?.click()}>
                     <div className='flex items-center space-x-3'>
                       <DoorOpen size={16} />

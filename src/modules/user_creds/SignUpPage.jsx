@@ -13,20 +13,28 @@
 
 import { SignupForm } from "@/components/signup-form";
 import { GalleryVerticalEnd } from "lucide-react"
+import { Link } from "react-router-dom";
+
 
 function SignUpPage() {
   return (
     <div className="grid min-h-svh lg:grid-cols-2">
       <div className="flex flex-col gap-4 p-6 md:p-10">
         <div className="flex justify-center">
-          <a href="#" className="flex items-center gap-2 font-medium">
-            <div className="w-48">
+          <Link to="/" className="flex items-center gap-2 font-medium">
+            <div className="xs:w-32 lg:w-48 block dark:hidden">
               <img
                 src="/philpro-white.png"
                 alt="Image"
               />
             </div>
-          </a>
+            <div className="xs:w-32 lg:w-48 hidden dark:block">
+              <img
+                src="/philpro-dark.png"
+                alt="Image"
+              />
+            </div>
+          </Link>
         </div>
         <div className="flex flex-1 items-center justify-center">
           <div className="w-full max-w-sm">

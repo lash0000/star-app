@@ -110,7 +110,7 @@ function LandingPage() {
       <div className="lg:container lg:mx-auto flex xs:items-start md:items-center flex-col gap-8 pb-12">
         {/* Hero Section */}
         <div className="xs:px-8 mt-12 w-full xs:items-start md:items-center justify-center flex flex-col gap-4">
-          <div className="flex gap-2">
+          <div className="flex flex-wrap gap-2">
             <Badge variant="outline" className="rounded-full">
               <BookOpen /> Online Courses
             </Badge>
@@ -137,7 +137,7 @@ function LandingPage() {
 
         {/* Banner Section */}
         <div className="border xs:w-full lg:w-[1040px]">
-          <div className="relative bg-[#9B5DE0] dark:bg-gradient-to-t from-green-500 to-stone-900 w-full h-[480px] overflow-hidden">
+          <div className="xs:hidden lg:block relative bg-[#9B5DE0] dark:bg-gradient-to-t from-green-500 to-stone-900 w-full h-[480px] overflow-hidden">
             <div
               className="absolute inset-0 bg-cover bg-center"
               style={{
@@ -248,7 +248,7 @@ function LandingPage() {
               <div className="space-y-4">
                 <AlertDialog>
                   <AlertDialogTrigger asChild>
-                    <InteractiveHoverButton className="w-full rounded-md">
+                    <InteractiveHoverButton className="w-full xs:text-sm md:text-lg rounded-md">
                       Is Philproperties a real-estate firm?
                     </InteractiveHoverButton>
                   </AlertDialogTrigger>
@@ -339,10 +339,10 @@ function LandingPage() {
                   </AlertDialogContent>
                 </AlertDialog>
 
-                <InteractiveHoverButton className="w-full rounded-md">
+                <InteractiveHoverButton className="w-full rounded-md xs:text-sm md:text-lg ">
                   What this online course platform offers?
                 </InteractiveHoverButton>
-                <InteractiveHoverButton className="w-full rounded-md">
+                <InteractiveHoverButton className="w-full rounded-md xs:text-sm md:text-lg ">
                   Premium plan offers?
                 </InteractiveHoverButton>
               </div>
@@ -358,7 +358,7 @@ function LandingPage() {
                     key={id}
                     className="flex items-center justify-between bg-primary dark:bg-muted rounded-md px-4 py-2 text-sm text-primary-foreground dark:text-white"
                   >
-                    <div className="flex items-center gap-2">
+                    <div className="flex items-center flex-wrap gap-2">
                       <Icon className="size-4" />
                       {label && <span className="opacity-90">{label}</span>}
                       <span className="font-medium ">{value}</span>

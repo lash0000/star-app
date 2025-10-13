@@ -21,9 +21,15 @@ function LoginPage() {
       <div className="flex flex-col gap-4 p-6 md:p-10">
         <div className="flex justify-center">
           <Link to="/" className="flex items-center gap-2 font-medium">
-            <div className="w-48">
+            <div className="xs:w-32 lg:w-48 block dark:hidden">
               <img
                 src="/philpro-white.png"
+                alt="Image"
+              />
+            </div>
+            <div className="xs:w-32 lg:w-48 hidden dark:block">
+              <img
+                src="/philpro-dark.png"
                 alt="Image"
               />
             </div>
