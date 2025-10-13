@@ -60,9 +60,16 @@ const data = {
       icon: BookMarked,
       isActive: true,
       items: [
-        { title: "History", url: "#" },
-        { title: "Settings", url: "#" },
-      ],
+        { title: "Readings in History", url: "#", name: "RIPH-111 (8 AM-10 AM)" },
+        { title: "Economics 101", url: "#", name: "ECON-101 (12 PM-3 PM)" },
+        { title: "Introduction to Psychology", url: "#", name: "PSYC-100 (9 AM-11 AM)" },
+        { title: "Fundamentals of Programming", url: "#", name: "CS-101 (1 PM-4 PM)" },
+        { title: "College Algebra", url: "#", name: "MATH-110 (10 AM-12 NN)" },
+        { title: "Purposive Communication", url: "#", name: "ENGL-102 (7 AM-9 AM)" },
+        { title: "Science, Technology, and Society", url: "#", name: "STS-101 (11 AM-1 PM)" },
+        { title: "Art Appreciation", url: "#", name: "ARTS-101 (3 PM-5 PM)" },
+      ]
+
     },
   ],
 }
@@ -78,8 +85,8 @@ export function AppSidebar({
             size="lg"
             className="data-[state=open]:bg-sidebar-accent data-[state=open]:text-sidebar-accent-foreground"
           >
-            <div className="bg-sidebar-primary text-sidebar-primary-foreground hover:none flex aspect-square size-8 items-center justify-center rounded-lg">
-              <SidebarTrigger icon={Menu} />
+            <div className=" text-sidebar-primary-foreground hover:none flex aspect-square size-8 items-center justify-center rounded-lg">
+              <SidebarTrigger className="bg-primary dark:bg-blue-950" icon={Menu} />
             </div>
             <div className="ml-1 grid flex-1 text-left text-sm leading-tight">
               <span className="truncate font-medium">{data.teams.name}</span>

@@ -11,15 +11,26 @@
 * Oct. 10, 2025       lash0000          001            Initial creation - STAR Phase 1 Project
 ***********************************************************************************************************************************************************************/
 
-import { Fragment } from "react";
+import { Fragment, useState } from "react";
 import { Badge } from "@/components/ui/badge"
-import { Check, Megaphone, Sparkles, Send, BookOpen, CheckCheck, RefreshCw, Globe, Mail, Clipboard, GitCompare } from "lucide-react";
+import { Check, Megaphone, Sparkles, Send, BookOpen, CheckCheck, RefreshCw, Globe, Mail, Clipboard, GitCompare, Building2, MapPin, Phone, Calendar, Users } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Link } from "react-router-dom";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs"
 import { InteractiveHoverButton } from "@/components/ui/interactive-hover-button"
-import { useState } from "react"
 import { toast } from "sonner"
+import {
+  AlertDialog,
+  AlertDialogContent,
+  AlertDialogDescription,
+  AlertDialogFooter,
+  AlertDialogHeader,
+  AlertDialogTitle,
+  AlertDialogTrigger,
+  AlertDialogCancel,
+  AlertDialogAction,
+} from "@/components/ui/alert-dialog"
+import { ScrollArea } from "@/components/ui/scroll-area"
 
 function LandingPage() {
   const [copied, setCopied] = useState("")
@@ -27,6 +38,65 @@ function LandingPage() {
   const ContactData = [
     { id: 1, icon: Mail, label: "Email:", value: "info@philproperties.ph" },
     { id: 2, icon: Globe, label: "Website:", value: "philproperties.ph" },
+  ]
+
+  const properties = [
+    {
+      id: 1,
+      name: "Luxury Downtown Condo",
+      location: "123 Main Street, Downtown",
+      price: "$850,000",
+      type: "Residential",
+      bedrooms: 3,
+      bathrooms: 2,
+      sqft: "2,100 sq ft",
+    },
+    {
+      id: 2,
+      name: "Modern Office Space",
+      location: "456 Business Ave, Financial District",
+      price: "$1,200,000",
+      type: "Commercial",
+      sqft: "5,000 sq ft",
+    },
+    {
+      id: 3,
+      name: "Suburban Family Home",
+      location: "789 Oak Lane, Westside",
+      price: "$650,000",
+      type: "Residential",
+      bedrooms: 4,
+      bathrooms: 3,
+      sqft: "3,200 sq ft",
+    },
+    {
+      id: 4,
+      name: "Beachfront Villa",
+      location: "321 Coastal Drive, Seaside",
+      price: "$2,500,000",
+      type: "Luxury Residential",
+      bedrooms: 5,
+      bathrooms: 4,
+      sqft: "4,800 sq ft",
+    },
+    {
+      id: 5,
+      name: "Retail Shopping Center",
+      location: "654 Commerce Blvd, Shopping District",
+      price: "$3,800,000",
+      type: "Commercial",
+      sqft: "15,000 sq ft",
+    },
+    {
+      id: 6,
+      name: "Mountain Retreat Cabin",
+      location: "987 Pine Ridge, Mountain View",
+      price: "$480,000",
+      type: "Vacation Property",
+      bedrooms: 2,
+      bathrooms: 2,
+      sqft: "1,600 sq ft",
+    },
   ]
 
   const handleCopy = (text) => {
@@ -176,9 +246,99 @@ function LandingPage() {
                 <p className="text-muted-foreground">Here are useful questions.</p>
               </div>
               <div className="space-y-4">
-                <InteractiveHoverButton className="w-full rounded-md">
-                  Is Philproperties a real-estate firm?
-                </InteractiveHoverButton>
+                <AlertDialog>
+                  <AlertDialogTrigger asChild>
+                    <InteractiveHoverButton className="w-full rounded-md">
+                      Is Philproperties a real-estate firm?
+                    </InteractiveHoverButton>
+                  </AlertDialogTrigger>
+                  <AlertDialogContent className="sm:max-w-lg lg:max-w-2xl">
+                    <AlertDialogHeader>
+                      <AlertDialogTitle className="flex items-center gap-2 text-2xl">
+                        Is Philproperties a real-estate firm?
+                      </AlertDialogTitle>
+                      <AlertDialogDescription className="text-left">
+                        Philproperties specializes in residential, commercial, and luxury properties across the region. With
+                        over 15 years of experience, we've helped thousands of clients find their dream properties.
+                      </AlertDialogDescription>
+                    </AlertDialogHeader>
+
+                    <ScrollArea className="h-[400px] rounded-md border p-4">
+                      <div className="space-y-6">
+                        <div className="space-y-2">
+                          <h3 className="font-semibold text-lg flex items-center gap-2">
+                            <Users className="h-5 w-5 text-primary" />
+                            About Us
+                          </h3>
+                          <p className="text-sm text-muted-foreground">
+                            Founded in 2009, Philproperties has grown to become one of the most trusted names in real estate.
+                            Our team of experienced agents provides personalized service to help you buy, sell, or invest in
+                            properties.
+                          </p>
+                        </div>
+
+                        <div className="space-y-2">
+                          <h3 className="font-semibold text-lg">Featured Properties</h3>
+                          <div className="space-y-4">
+                            {properties.map((property) => (
+                              <div
+                                key={property.id}
+                                className="rounded-lg border bg-card p-4 space-y-2 hover:shadow-md transition-shadow"
+                              >
+                                <div className="flex items-start justify-between">
+                                  <h4 className="font-semibold text-card-foreground">{property.name}</h4>
+                                  <span className="text-sm font-bold text-primary">{property.price}</span>
+                                </div>
+                                <div className="space-y-1 text-sm text-muted-foreground">
+                                  <div className="flex items-center gap-2">
+                                    <MapPin className="h-4 w-4" />
+                                    <span>{property.location}</span>
+                                  </div>
+                                  <div className="flex items-center gap-4">
+                                    <span className="font-medium text-foreground">{property.type}</span>
+                                    <span>•</span>
+                                    <span>{property.sqft}</span>
+                                  </div>
+                                  {property.bedrooms && (
+                                    <div className="flex items-center gap-2">
+                                      <span>
+                                        {property.bedrooms} bed • {property.bathrooms} bath
+                                      </span>
+                                    </div>
+                                  )}
+                                </div>
+                              </div>
+                            ))}
+                          </div>
+                        </div>
+
+                        <div className="space-y-2">
+                          <h3 className="font-semibold text-lg">Contact Information</h3>
+                          <div className="space-y-2 text-sm">
+                            <div className="flex items-center gap-2 text-muted-foreground">
+                              <Phone className="h-4 w-4" />
+                              <span>(555) 123-4567</span>
+                            </div>
+                            <div className="flex items-center gap-2 text-muted-foreground">
+                              <Mail className="h-4 w-4" />
+                              <span>info@philproperties.com</span>
+                            </div>
+                            <div className="flex items-center gap-2 text-muted-foreground">
+                              <Calendar className="h-4 w-4" />
+                              <span>Mon-Fri: 9AM-6PM, Sat: 10AM-4PM</span>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </ScrollArea>
+
+                    <AlertDialogFooter>
+                      <AlertDialogCancel>Close</AlertDialogCancel>
+                      <AlertDialogAction>View All</AlertDialogAction>
+                    </AlertDialogFooter>
+                  </AlertDialogContent>
+                </AlertDialog>
+
                 <InteractiveHoverButton className="w-full rounded-md">
                   What this online course platform offers?
                 </InteractiveHoverButton>

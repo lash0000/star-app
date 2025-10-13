@@ -27,6 +27,7 @@ import {
   FieldLabel,
 } from "@/components/ui/field"
 import { Input } from "@/components/ui/input"
+import { Link } from "react-router-dom";
 
 export function ForgotPasswordForm({ className, ...props }) {
   return (
@@ -53,14 +54,17 @@ export function ForgotPasswordForm({ className, ...props }) {
                 />
               </Field>
               <Field>
-                <Button type="submit" className="w-full">
-                  Login
-                </Button>
+                <Link to="/verify">
+                  <Button type="submit" className="w-full">
+                    Proceed
+                  </Button>
+                </Link>
+
                 <FieldDescription className="text-center mt-4">
                   Already have an account?{" "}
-                  <a href="#" className="underline underline-offset-4">
-                    Sign up
-                  </a>
+                  <Link to="/login" className="underline underline-offset-4">
+                    Sign in
+                  </Link>
                 </FieldDescription>
               </Field>
             </FieldGroup>

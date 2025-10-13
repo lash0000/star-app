@@ -22,11 +22,25 @@ import {
 } from "@/components/ui/field"
 import { Input } from "@/components/ui/input"
 import { Send } from "lucide-react";
+import {
+  Dialog,
+  DialogContent,
+  DialogDescription,
+  DialogHeader,
+  DialogTitle,
+  DialogTrigger,
+  DialogFooter,
+  DialogClose
+} from "@/components/ui/dialog"
+import { Link } from "react-router-dom"
+import { useState } from "react"
 
 export function VerifyEmailForm({
   className,
   ...props
 }) {
+  const [otp, setOtp] = useState("")
+
   return (
     <form className={cn("flex flex-col gap-6", className)} {...props}>
       <FieldGroup>
@@ -39,25 +53,52 @@ export function VerifyEmailForm({
         <FieldSeparator>Or continue with</FieldSeparator>
         <Field>
           <FieldLabel htmlFor="text">OTP Code (6-digits only)</FieldLabel>
-          <Input id="text"
+          <Input id="otp"
             type="text"
+            value={otp}
             placeholder="000000"
             required
             onInput={(e) => {
-              e.target.value = e.target.value.replace(/\D/g, "").slice(0, 6)
+              const digits = e.target.value.replace(/\D/g, "").slice(0, 6)
+              setOtp(digits)
             }}
           />
         </Field>
         <div className="space-y-3">
           <Field>
-            <Button type="submit">
-              Proceed
-            </Button>
+            <Link to={otp.length === 6 ? "/verified" : "#"}>
+              <Button
+                type="submit"
+                className="w-full"
+                disabled={otp.length !== 6}
+              >
+                Proceed
+              </Button>
+            </Link>
           </Field>
           <Field>
-            <Button type="submit" variant="outline">
-              <Send /> Resend
-            </Button>
+            <Dialog>
+              <DialogTrigger>
+                <Button type="submit" variant="outline" className="w-full">
+                  <Send /> Resend
+                </Button>
+
+              </DialogTrigger>
+              <DialogContent>
+                <DialogHeader>
+                  <DialogTitle>One Time Password Sent</DialogTitle>
+                  <DialogDescription>
+                    We sent you OTP code for verification of your email.
+                  </DialogDescription>
+                </DialogHeader>
+                <DialogFooter>
+                  <DialogClose asChild>
+                    <Button>Close</Button>
+                  </DialogClose>
+
+                </DialogFooter>
+              </DialogContent>
+            </Dialog>
           </Field>
         </div>
       </FieldGroup>

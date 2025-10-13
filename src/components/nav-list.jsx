@@ -47,9 +47,10 @@ export function NavLists({ projects }) {
             >
               <SidebarMenuItem>
                 <CollapsibleTrigger asChild>
-                  <SidebarMenuButton tooltip={item.title || item.name}>
+                  <SidebarMenuButton tooltip={item.title || item.name} className="flex-wrap h-auto items-start">
                     {item.icon && <item.icon />}
-                    <span>{item.title || item.name}</span>
+                    <span>{item.title}</span>
+                    {/*<span className="text-muted-foreground">dsfkoasdfkoadsfkoasdfko</span>*/}
                     <ChevronRight className="ml-auto transition-transform duration-200 group-data-[state=open]/collapsible:rotate-90" />
                   </SidebarMenuButton>
                 </CollapsibleTrigger>
@@ -57,9 +58,10 @@ export function NavLists({ projects }) {
                   <SidebarMenuSub>
                     {item.items.map((subItem) => (
                       <SidebarMenuSubItem key={subItem.title}>
-                        <SidebarMenuSubButton asChild>
+                        <SidebarMenuSubButton className="flex-wrap flex-col h-auto items-start gap-1 mb-1.5" asChild>
                           <a href={subItem.url}>
                             <span>{subItem.title}</span>
+                            <p className="text-muted-foreground text-xs">{subItem.name}</p>
                           </a>
                         </SidebarMenuSubButton>
                       </SidebarMenuSubItem>
@@ -70,10 +72,10 @@ export function NavLists({ projects }) {
             </Collapsible>
           ) : (
             <SidebarMenuItem key={item.title || item.name}>
-              <SidebarMenuButton tooltip={item.title} asChild>
+              <SidebarMenuButton className="flex-wrap h-auto items-start" tooltip={item.title} asChild>
                 <a href={item.url}>
                   {item.icon && <item.icon />}
-                  <span>{item.title || item.name}</span>
+                  <span>{item.title}</span>
                 </a>
               </SidebarMenuButton>
             </SidebarMenuItem>

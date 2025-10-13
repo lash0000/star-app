@@ -107,6 +107,7 @@ function NavbarLayout() {
               </Button>
               <Button className="dark:bg-(--primary-green)" asChild>
                 <NavLink
+                  to="/login"
                   onClick={() => scrollToId("contacts")}
                   className={({ isActive }) =>
                     `hover:text-neutral-600 dark:hover:text-neutral-400 ${isActive ? 'underline' : ''}`
@@ -149,7 +150,7 @@ function NavbarLayout() {
               )}
             </Button>
             <DrawerTrigger>
-              <Button size="icon" className="lg:hidden">
+              <Button size="icon" className=" dark:bg-green-400 lg:hidden">
                 <Equal />
               </Button>
             </DrawerTrigger>
@@ -195,7 +196,7 @@ function NavbarLayout() {
                   </RippleButton>
                 </Link>
                 <Link to="">
-                  <RippleButton className="w-full justify-start bg-primary text-primary-foreground" onClick={() => drawerCloseRef.current?.click()}>
+                  <RippleButton className="dark:bg-green-400 w-full justify-start bg-primary text-primary-foreground" onClick={() => drawerCloseRef.current?.click()}>
                     <div className='flex items-center space-x-3'>
                       <DoorOpen size={16} />
                       <label>Sign in</label>

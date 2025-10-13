@@ -31,11 +31,11 @@ export function VerifiedSuccess({ className, ...props }) {
           <CardDescription>Your email has been verified. You may now proceed and begin your learning journey with us.</CardDescription>
         </CardHeader>
         <CardContent>
-          <Link to="/dashboard">
+          <a href="/dashboard">
             <Button className="w-full cursor-pointer">
               <Home /> Continue to Dashboard
             </Button>
-          </Link>
+          </a>
         </CardContent>
       </Card>
     </div>

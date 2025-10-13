@@ -21,6 +21,7 @@ import {
   FieldSeparator,
 } from "@/components/ui/field"
 import { Input } from "@/components/ui/input"
+import { Link } from "react-router-dom"
 
 export function SignupForm({
   className,
@@ -65,9 +66,9 @@ export function SignupForm({
         <Field>
           <FieldDescription className="text-center font-medium">
             Already have an account?{" "}
-            <a href="#" className="underline underline-offset-4">
+            <Link to="/login" className="underline underline-offset-4">
               Sign in
-            </a>
+            </Link>
           </FieldDescription>
         </Field>
       </FieldGroup>

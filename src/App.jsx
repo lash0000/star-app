@@ -11,42 +11,91 @@
 * Oct. 10, 2025       lash0000          001            Initial creation - STAR Phase 1 Project
 ***********************************************************************************************************************************************************************/
 
-import { useState, useEffect, Fragment } from 'react';
-import { BrowserRouter as Router, Routes, Route, useLocation, useNavigate } from 'react-router-dom';
-import LandingRoutes from './routes/LandingRoutes';
-import UserRoutes from './routes/UserRoutes';
-import { ThemeProvider } from './components/ThemeProvider';
+import { useEffect } from "react";
+import { BrowserRouter as Router, Routes, Route, useLocation } from "react-router-dom";
+import { ThemeProvider } from "./components/ThemeProvider";
+import { Helmet, HelmetProvider } from "react-helmet-async";
+import LandingRoutes from "./routes/LandingRoutes";
+import UserRoutes from "./routes/UserRoutes";
 
-const pageTitles = {
-  "/": "On your own schedule begins your learning journey | Philproperties",
-  "/login": "Take the next step towards new learnings. Here at Philproperties",
+const pageMetadata = {
+  "/": {
+    title: "On your own schedule, learning journey begins",
+    description:
+      "Still in development phase for Sales Training and Recruitment of Philproperites Corp.",
+    keywords: "open online courses, philproperties, online courses, training, onboarding",
+    ogTitle: "On your own schedule, learning journey begins",
+    ogDescription:
+      "Still in development phase for Sales Training and Recruitment of Philproperites Corp.",
+    ogImage: "",
+  },
+  "/login": {
+    title: "Login first! - Sales Training and Recruitment Online Course",
+    description: "Log in to access Sales Training and Recruitment services.",
+    keywords: "login, philproperties, training, onboarding",
+    ogTitle: "Login first! - Sales Training and Recruitment Online Course",
+    ogDescription: "Log in to access Sales Training and Recruitment services.",
+    ogImage: "",
+  },
+  "/dashboard": {
+    title: "Take a breath while embracing your learnings",
+    description:
+      "A dashboard page for client side; it contains available online courses.",
+    keywords: "dashboard, open online courses, philproperties",
+    ogTitle: "Take a breath while embracing your learnings",
+    ogDescription:
+      "A dashboard page for client side; it contains available online courses.",
+    ogImage: "",
+  },
 };
 
 function TitleUpdater() {
   const location = useLocation();
+  const metadata =
+    pageMetadata[location.pathname] || {
+      title:
+        "On your own schedule learning journey begins | Sales Training and Recruitment Services by Philproperties Corp.",
+      description: "This is still in development phase. Come back soon.",
+      keywords: "philproperties, sales-training, online courses, free courses, philpro",
+      ogTitle:
+        "On your own schedule learning journey begins | Sales Training and Recruitment Services by Philproperties Corp.",
+      ogDescription: "This is still in development phase. Come back soon.",
+      ogImage: "https://your-site.com/images/default-og-image.jpg",
+    };
 
-  useEffect(() => {
-    document.title = pageTitles[location.pathname] || "Sales Training and Recruitment by Philproperties";
-  }, [location.pathname]);
-
-  return null;
+  return (
+    <Helmet>
+      <title>{metadata.title}</title>
+      <meta name="description" content={metadata.description} />
+      <meta name="keywords" content={metadata.keywords} />
+      <meta property="og:title" content={metadata.ogTitle} />
+      <meta property="og:description" content={metadata.ogDescription} />
+      <meta property="og:image" content={metadata.ogImage} />
+      <meta property="og:type" content="website" />
+      <meta property="og:url" content={window.location.href} />
+      <meta name="twitter:card" content="summary_large_image" />
+    </Helmet>
+  );
 }
 
 function App() {
   return (
-    <ThemeProvider defaultTheme="light" storageKey="vite-ui-theme">
-      <Router>
-        <TitleUpdater />
-        <main className="font-medium selection:bg-primary selection:text-white dark:selection:bg-white dark:selection:text-black">
-          <Routes>
-            {LandingRoutes()}
-            {UserRoutes()}
-          </Routes>
-        </main>
-      </Router>
-    </ThemeProvider>
+    <HelmetProvider>
+      <ThemeProvider defaultTheme="light" storageKey="vite-ui-theme">
+        <Router>
+          <TitleUpdater key={window.location.pathname} />
+          <main className="font-medium selection:bg-primary selection:text-white dark:selection:bg-white dark:selection:text-black">
+            <Routes>
+              {LandingRoutes()}
+              {UserRoutes()}
+            </Routes>
+          </main>
+        </Router>
+      </ThemeProvider>
+    </HelmetProvider>
   );
 }
 
 export default App;
+
 

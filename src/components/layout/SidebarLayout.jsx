@@ -34,10 +34,13 @@ import {
   PopoverTrigger,
 } from "@/components/ui/popover"
 import { Outlet } from "react-router-dom";
-import { Menu, User, LogOut } from "lucide-react";
+import { Menu, User, LogOut, Moon, Sun } from "lucide-react";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar"
+import { useTheme } from "../ThemeProvider"
 
 function SidebarLayout() {
+  const { theme, toggleTheme } = useTheme();
+
   return (
     <SidebarProvider>
       <AppSidebar />
@@ -51,7 +54,12 @@ function SidebarLayout() {
                   <img
                     src="/philpro-white.png"
                     alt="Image"
-                    className="w-40"
+                    className="dark:hidden w-40"
+                  />
+                  <img
+                    src="/philpro-dark.png"
+                    alt="Image"
+                    className="hidden dark:block w-40"
                   />
                 </BreadcrumbItem>
 
@@ -95,6 +103,20 @@ function SidebarLayout() {
                     <User className="size-4" />
                     <span className="text-sm font-medium">Profile</span>
                   </Button>
+                  <Button variant="ghost" onClick={toggleTheme} className="w-full justify-start gap-3 px-4 py-3 rounded-none">
+                    {theme === 'light' ? (
+                      <>
+                        <Moon classNam="size-4" />
+                        <span className="text-sm font-medium">Switch to Dark</span>
+
+                      </>
+                    ) : (
+                      <>
+                        <Sun />
+                        <span className="text-sm font-medium">Switch to Light</span>
+                      </>
+                    )}
+                  </Button>
                   <Button variant="ghost" className="w-full justify-start gap-3 px-4 py-3 rounded-none">
                     <LogOut className="size-4" />
                     <span className="text-sm font-medium">Sign out</span>
@@ -104,7 +126,7 @@ function SidebarLayout() {
             </PopoverContent>
           </Popover>
         </div>
-        <div className="flex flex-1 flex-col gap-4 p-4">
+        <div className="flex flex-1 flex-col gap-4 bg-slate-100 dark:bg-muted p-8">
           <Outlet />
         </div>
       </SidebarInset>
