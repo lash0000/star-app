@@ -86,7 +86,7 @@ function Carousel({ orientation = "horizontal", opts, setApi, plugins, className
     >
       <div
         onKeyDownCapture={handleKeyDown}
-        className={cn("relative cursor-grab", className)}
+        className={cn("relative", className)}
         role="region"
         aria-roledescription="carousel"
         data-slot="carousel"

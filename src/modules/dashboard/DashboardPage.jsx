@@ -111,7 +111,7 @@ function DashboardPage() {
     return (
       <section
         id="dashboard-loading"
-        className="flex items-center justify-center min-h-screen bg-muted"
+        className="flex items-center justify-center min-h-screen"
       >
         <div className="flex flex-col items-center justify-center gap-4 w-full max-w-sm">
           <Progress value={progress} className="w-full h-2" />
@@ -128,66 +128,63 @@ function DashboardPage() {
             <h1 className="text-2xl tracking-tighter font-bold text-primary">Dashboard</h1>
             <div
               id="banner-announcement"
-              className="relative bg-white p-6 rounded-2xl shadow-sm w-full overflow-hidden"
+              className="relative bg-white dark:bg-gray-700/40 border dark:hover:border-blue-500 rounded-2xl shadow-sm w-full overflow-hidden p-1 transition-colors"
             >
-              <Button
-                variant="ghost"
-                size="icon"
-                className="absolute top-4 right-4 text-gray-400 hover:text-gray-600 transition-colors z-20"
-                aria-label="Close banner"
-              >
-                <X className="size-5" />
-              </Button>
+              <div className="border dark:border-gray-100/8 rounded-2xl p-3">
+                <Button
+                  variant="ghost"
+                  size="icon"
+                  className="absolute top-4 right-4 text-gray-400 hover:text-gray-600 transition-colors z-20"
+                  aria-label="Close banner"
+                >
+                  <X className="size-5" />
+                </Button>
 
-              <div className="flex items-center justify-between gap-8 pr-0">
-                <div className="flex flex-col items-start gap-4 z-10">
-                  <span className="text-xs uppercase tracking-wider text-blue-800 font-medium">
-                    Study on the go
-                  </span>
-                  <h1 className="lg:text-4xl font-bold text-primary leading-tight tracking-tighter break-words ">
-                    Sharpen Your Skills with Real Estate Investing up to Sales 100%
-                  </h1>
-                  <Link
-                    to="#"
-                    className="inline-flex items-center gap-2 text-primary font-medium transition-colors group"
-                  >
-                    Proceed
-                    <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
-                  </Link>
-                </div>
+                <div className="flex items-center justify-between gap-8 pr-0">
+                  <div className="flex flex-col items-start gap-4 z-10">
+                    <span className="text-xs uppercase tracking-wider text-blue-800 dark:text-white font-medium">
+                      Study on the go
+                    </span>
+                    <h1 className="lg:text-4xl sm:text-2xl font-bold text-primary leading-tight tracking-tighter break-words ">
+                      Sharpen Your Skills with Real Estate Investing up to Sales 100%
+                    </h1>
+                    <Link
+                      to="#"
+                      className="inline-flex items-center gap-2 text-primary font-medium transition-colors group"
+                    >
+                      Proceed
+                      <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
+                    </Link>
+                  </div>
 
-                {/* Right: Illustration */}
-                <div className="hidden relative flex-shrink-0 w-96 -mb-24">
-                  <img
-                    src="/manypixels_diversity-1-88.png"
-                    alt="Study on the go illustration"
-                    className="w-full h-full object-contain"
-                  />
+                  {/* Right: Illustration */}
+                  <div className="hidden relative flex-shrink-0 w-96 -mb-24">
+                    <img
+                      src="/manypixels_diversity-1-88.png"
+                      alt="Study on the go illustration"
+                      className="w-full h-full object-contain"
+                    />
+                  </div>
                 </div>
               </div>
             </div>
-            <div className="border bg-white p-2 rounded-lg">
+            <div className="border bg-white dark:bg-gray-700/40 p-1 rounded-2xl">
               <h1 className="text-2xl tracking-tighter font-bold text-primary p-2">Available Courses</h1>
               <DashboardCarousel />
-              {/*
-              <div className="grid xs:grid-cols-1 sm:grid-cols-2 gap-2">
-                <div>dsafladsokf</div>
-              </div>
-              */}
             </div>
           </div>
 
-          <div className="lg:col-span-3 bg-white dark:bg-muted shadow-sm w-full h-fit rounded-xl p-2 border flex items-start flex-col xs:hidden lg:block">
-            <div className="bg-primary dark:bg-blue-700 flex flex-col w-full rounded-lg p-4 gap-2">
+          <div className="lg:col-span-3 bg-white dark:bg-gray-700/40 shadow-sm w-full h-fit rounded-xl p-2 border flex items-start flex-col xs:hidden lg:block">
+            <div className="bg-primary dark:bg-gray-900 flex flex-col w-full rounded-lg p-4 gap-2">
               <div className="flex items-center justify-between">
                 <h1 className="text-white text-lg tracking-tighter">Compliance (5 task)</h1>
                 <Button className="bg-white text-black hover:bg-blue-700 hover:text-white">View All</Button>
               </div>
-              <div className="hover:bg-slate-900 rounded-lg transition-colors cursor-pointer select-none">
+              <div className="dark:hover:bg-gray-700/30  rounded-lg transition-colors cursor-pointer select-none">
                 <div className="flex items-center flex-row justify-between w-full">
                   <div className="flex items-center flex-row gap-2">
-                    <div className="bg-white h-fit p-1.5 rounded-full">
-                      <Book className="size-4" />
+                    <div className="bg-white dark:bg-gray-700/80 h-fit p-1.5 rounded-full">
+                      <Book className="size-4 text-blue-500" />
                     </div>
                     <div classname="flex flex-col line-clamp-2 h-fit">
                       <h1 className="text-[.95rem] text-white">Marketing Strategy</h1>
@@ -197,11 +194,11 @@ function DashboardPage() {
                   <p className="text-[.75rem] text-white">Today, 11:59 PM</p>
                 </div>
               </div>
-              <div className="hover:bg-slate-900 rounded-lg transition-colors cursor-pointer select-none">
+              <div className="dark:hover:bg-gray-700/30 rounded-lg transition-colors cursor-pointer select-none">
                 <div className="flex items-center flex-row justify-between w-full">
                   <div className="flex items-center flex-row gap-2">
-                    <div className="bg-white h-fit p-1.5 rounded-full">
-                      <Book className="size-4" />
+                    <div className="bg-white dark:bg-gray-700/80 h-fit p-1.5 rounded-full">
+                      <Book className="size-4 text-blue-500" />
                     </div>
                     <div classname="flex flex-col line-clamp-2 h-fit">
                       <h1 className="text-[.95rem] text-white">Systems Architecture</h1>
@@ -216,7 +213,7 @@ function DashboardPage() {
               <h1 className="text-2xl tracking-tighter font-bold text-primary">Your Stats</h1>
               <p className="text-sm text-muted-foreground">See your activities in the past weeks.</p>
             </div>
-            <div className="bg-slate-200/50 border flex flex-col w-full rounded-lg p-4">
+            <div className="bg-slate-200/50 dark:bg-gray-900 border flex flex-col w-full rounded-lg p-4">
               <div className="flex items-center justify-between">
                 <h1 className="text-lg tracking-tighter">Completed Onboarding Tasks</h1>
               </div>
@@ -231,7 +228,7 @@ function DashboardPage() {
                             {task.completed}/{task.total}
                           </span>
                         </div>
-                        <Progress value={task.progress} className="h-2 bg-slate-200" indicatorClassName="bg-indigo-900" />
+                        <Progress value={task.progress} className="h-2 " indicatorClassName="bg-indigo-900" />
                       </div>
                     </HoverCardTrigger>
                     <HoverCardContent className="w-80" side="top" align="center" sideOffset={8}>
@@ -256,7 +253,7 @@ function DashboardPage() {
                             <span>
                               {task.completed} of {task.total} completed
                             </span>
-                            {task.dueDate && <span className="text-amber-700 font-medium">{task.dueDate}</span>}
+                            {task.dueDate && <span className="text-amber-700 dark:text-blue-500 font-medium">{task.dueDate}</span>}
                           </div>
                         </div>
                       </div>
@@ -266,35 +263,33 @@ function DashboardPage() {
               </div>
             </div>
 
-            <div className="bg-slate-200/50 border flex flex-col w-full rounded-lg p-4 mt-2">
+            <div className="bg-slate-200/50 dark:bg-gray-900 border flex flex-col w-full rounded-lg p-4 mt-2">
               <div className="flex items-center justify-between mb-2">
                 <h1 className="text-lg tracking-tighter">Latest Achievements</h1>
               </div>
               <div className="space-y-2">
-                <div className="hover:bg-slate-200 rounded-lg transition-colors cursor-pointer select-none">
+                <div className="hover:bg-slate-200 dark:hover:bg-gray-700/30 rounded-lg transition-colors cursor-pointer select-none">
                   <div className="flex items-center flex-row justify-between w-full">
                     <div className="flex items-center flex-row gap-3">
-                      <div className="bg-blue-300 h-fit p-2 rounded-xl">
+                      <div className="bg-blue-300 dark:bg-gradient-to-b from-violet-600 to-violet-800 h-fit p-2 rounded-xl">
                         <Book className="size-6" />
                       </div>
-                      <div classname="flex flex-col line-clamp-2 h-fit">
+                      <div classname="flex flex-col h-fit">
                         <p className="text-[.75rem] text-muted-foreground">Course</p>
-                        <h1 className="text-[.95rem]">Marketing Strategy Fundamentals</h1>
-                        <p className="text-[.75rem] text-muted-foreground">MSF101</p>
+                        <h1 className="text-[.95rem] line-clamp-2">Marketing Strategy Fundamentals</h1>
                       </div>
                     </div>
                   </div>
                 </div>
-                <div className="hover:bg-slate-200 rounded-lg transition-colors cursor-pointer select-none">
+                <div className="hover:bg-slate-200 dark:hover:bg-gray-700/30 rounded-lg transition-colors cursor-pointer select-none">
                   <div className="flex items-center flex-row justify-between w-full">
                     <div className="flex items-center flex-row gap-3">
-                      <div className="bg-blue-300 h-fit p-2 rounded-xl">
+                      <div className="bg-blue-300 dark:bg-gradient-to-b from-violet-600 to-violet-800 h-fit p-2 rounded-xl">
                         <Book className="size-6" />
                       </div>
                       <div classname="flex flex-col line-clamp-2 h-fit">
                         <p className="text-[.75rem] text-muted-foreground">Course</p>
-                        <h1 className="text-[.95rem]">Marketing Strategy Fundamentals</h1>
-                        <p className="text-[.75rem] text-muted-foreground">MSF101</p>
+                        <h1 className="text-[.95rem] line-clamp-2">Marketing Strategy Fundamentals</h1>
                       </div>
                     </div>
                   </div>

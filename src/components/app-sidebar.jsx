@@ -46,12 +46,12 @@ const data = {
   navMain: [
     {
       title: "Dashboard",
-      url: "#",
+      url: "/dashboard",
       icon: House,
     },
     {
       title: "Checklist",
-      url: "#",
+      url: "/dashboard/onboarding-checklist",
       icon: Command,
     },
     {

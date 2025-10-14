@@ -31,29 +31,29 @@ export default function DashboardCarousel() {
           {Array.from({ length: 5 }).map((_, index) => {
             const testData = [
               {
-                title: "What a lazy dog",
+                title: "Become a Sales Consultant",
                 description: "A quick paragraph random content by the way ako ay isang batman!",
                 image: "https://barangaypoblacionpateros.com/wp-content/uploads/2025/01/barngay.jpg",
               },
               {
-                title: "Beautiful Sunset",
+                title: "Economics 101",
                 description: "Amazing colors painting the evening sky with warmth....",
                 image: "https://barangaypoblacionpateros.com/wp-content/uploads/2025/01/barngay.jpg",
               },
               {
-                title: "Mountain Adventure",
+                title: "Systems Integration and Architecture 101",
                 description: "Exploring the peaks and valleys of nature's wonder....",
                 image: "https://barangaypoblacionpateros.com/wp-content/uploads/2025/01/barngay.jpg",
 
               },
               {
-                title: "Ocean Waves",
+                title: "Art Appreciation",
                 description: "The rhythmic dance of water against the shore....",
                 image: "https://barangaypoblacionpateros.com/wp-content/uploads/2025/01/barngay.jpg",
 
               },
               {
-                title: "City Lights",
+                title: "Understanding the Self",
                 description: "Urban landscape glowing in the darkness of night....",
                 image: "https://barangaypoblacionpateros.com/wp-content/uploads/2025/01/barngay.jpg",
               },
@@ -63,8 +63,8 @@ export default function DashboardCarousel() {
 
             return (
               <CarouselItem key={index}>
-                <Card className="border rounded-2xl py-0 gap-0 overflow-hidden">
-                  <div className="relative bg-red-500">
+                <Card className="border dark:hover:border-blue-500 transition-colors rounded-2xl py-0 gap-0 overflow-hidden">
+                  <div className="relative">
                     <img
                       src={item.image}
                       alt={item.title}
@@ -72,12 +72,12 @@ export default function DashboardCarousel() {
                     />
                     <Badge
                       variant="secondary"
-                      className="absolute top-3 left-3 bg-white border shadow-sm"
+                      className="absolute top-3 left-3 bg-white dark:bg-gray-900 border shadow-sm"
                     >
                       {item.badge || "Supplemental Training"}
                     </Badge>
                   </div>
-                  <div className="bg-white space-y-1.5 p-4">
+                  <div className="bg-white dark:bg-gray-900 space-y-1.5 p-4">
                     <p className="text-sm text-muted-foreground">Course | Self-paced</p>
                     <h3 className="text-xl font-bold tracking-tighter leading-tight">
                       {item.title || "Becoming Sales Consultant"}
@@ -94,7 +94,7 @@ export default function DashboardCarousel() {
         </CarouselContent>
 
         {/* Navigation and Progress Container */}
-        <div className="flex items-center justify-between mt-4 px-2">
+        <div className="flex items-center justify-between p-2">
           {/* Navigation Arrows */}
           <div className="flex items-center gap-2">
             <CarouselPrevious className="static translate-y-0 h-8 w-8 rounded-lg" />
@@ -102,7 +102,7 @@ export default function DashboardCarousel() {
           </div>
 
           {/* Progress Bar */}
-          <div className="flex-1 max-w-24 ml-4">
+          <div className="flex-1 max-w-24">
             <Progress value={progressValue} className="h-2" />
           </div>
         </div>

@@ -125,7 +125,7 @@ function SidebarLayout() {
             </PopoverContent>
           </Popover>
         </div>
-        <div className="flex flex-1 flex-col gap-4 bg-slate-100 dark:bg-muted xs:p-4 lg:p-8">
+        <div className="flex flex-1 flex-col gap-4 bg-slate-100 dark:bg-gray-900 xs:p-4 lg:p-8">
           <Outlet />
         </div>
       </SidebarInset>
