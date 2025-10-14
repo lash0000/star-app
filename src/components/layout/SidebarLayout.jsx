@@ -72,10 +72,10 @@ function SidebarLayout() {
                 <AvatarFallback>CN</AvatarFallback>
               </Avatar>
             </PopoverTrigger>
-            <PopoverContent align="end" className="w-auto p-0">
+            <PopoverContent align="end" className="md:w-full p-0">
               <div className="flex flex-col">
                 {/* Email Header */}
-                <div className="px-8 py-3 text-center border-b">
+                <div className="px-8 py-3 flex items-center justify-center border-b">
                   <p className="xs:text-xs md:text-sm font-medium">obsequio.kenneth.ampoloquio@gmail.com</p>
                 </div>
                 <div className="flex flex-col items-center py-6 px-4">
@@ -125,7 +125,7 @@ function SidebarLayout() {
             </PopoverContent>
           </Popover>
         </div>
-        <div className="flex flex-1 flex-col gap-4 bg-slate-100 dark:bg-muted p-8">
+        <div className="flex flex-1 flex-col gap-4 bg-slate-100 dark:bg-muted xs:p-4 lg:p-8">
           <Outlet />
         </div>
       </SidebarInset>

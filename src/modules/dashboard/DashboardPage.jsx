@@ -5,10 +5,60 @@ import { Link } from "react-router-dom";
 import { Progress } from "@/components/ui/progress";
 import { HoverCard, HoverCardContent, HoverCardTrigger } from "@/components/ui/hover-card";
 import { Badge } from "@/components/ui/badge";
+import DashboardCarousel from "@/components/layout/DashboardCarousel";
+
 
 function DashboardPage() {
   const [loading, setLoading] = useState(true);
   const [progress, setProgress] = useState(0);
+
+  const courses = [
+    {
+      id: 1,
+      image: "https://cq5as7pc73.ufs.sh/f/pHNnzIw3VjcgQhP8bAH1zD6Rg7Fh3sAdVwjO4BxbtPWk58iU",
+      badge: "Supplemental Training",
+      type: "Course | Self-paced",
+      title: "Becoming Sales Consultant",
+      description:
+        "Learn from differences up to you will able to understand more deeply than knowledge and perceptions when we view our economy.",
+    },
+    {
+      id: 2,
+      image: "https://cq5as7pc73.ufs.sh/f/pHNnzIw3VjcgQhP8bAH1zD6Rg7Fh3sAdVwjO4BxbtPWk58iU",
+      badge: "Mandatory Training",
+      type: "Course | Self-paced",
+      title: "Advanced Marketing Strategies",
+      description:
+        "Master the art of digital marketing and learn how to create compelling campaigns that drive results and engage your target audience.",
+    },
+    {
+      id: 3,
+      image: "https://cq5as7pc73.ufs.sh/f/pHNnzIw3VjcgQhP8bAH1zD6Rg7Fh3sAdVwjO4BxbtPWk58iU",
+      badge: "Professional Development",
+      type: "Course | Instructor-led",
+      title: "Leadership Excellence Program",
+      description:
+        "Develop essential leadership skills and learn how to inspire teams, make strategic decisions, and drive organizational success.",
+    },
+    {
+      id: 4,
+      image: "https://cq5as7pc73.ufs.sh/f/pHNnzIw3VjcgQhP8bAH1zD6Rg7Fh3sAdVwjO4BxbtPWk58iU",
+      badge: "Technical Training",
+      type: "Course | Self-paced",
+      title: "Data Analytics Fundamentals",
+      description:
+        "Unlock the power of data with hands-on training in analytics tools and techniques to make data-driven business decisions.",
+    },
+    {
+      id: 5,
+      image: "https://cq5as7pc73.ufs.sh/f/pHNnzIw3VjcgQhP8bAH1zD6Rg7Fh3sAdVwjO4BxbtPWk58iU",
+      badge: "Supplemental Training",
+      type: "Course | Hybrid",
+      title: "Customer Service Excellence",
+      description:
+        "Enhance your customer service skills and learn proven techniques to deliver exceptional experiences that build loyalty and satisfaction.",
+    },
+  ]
 
   const onboardingTasks = [
     {
@@ -118,37 +168,12 @@ function DashboardPage() {
             </div>
             <div className="border bg-white p-2 rounded-lg">
               <h1 className="text-2xl tracking-tighter font-bold text-primary p-2">Available Courses</h1>
-              <div className="grid grid-cols-2 gap-2">
-                <div className="bg-white border rounded-lg overflow-hidden hover:shadow-lg transition-shadow">
-                  <div className="relative">
-                    <img src="https://cq5as7pc73.ufs.sh/f/pHNnzIw3VjcgQhP8bAH1zD6Rg7Fh3sAdVwjO4BxbtPWk58iU" alt="" className="h-36 w-full object-cover" />
-                    <Badge variant="secondary" className="absolute top-3 left-3 bg-white border shadow-sm">
-                      Supplemental Training
-                    </Badge>
-                  </div>
-                  <div className="space-y-1.5 p-4">
-                    <p className="text-sm text-muted-foreground">Course | Self-paced</p>
-                    <h3 className="text-xl font-bold tracking-tighter leading-tight">Becoming Sales Consultant</h3>
-                    <p className="text-sm text-muted-foreground leading-relaxed">Learn from differences up to you will able to understand more deeply than knowledge and perceptions when we view our economy.</p>
-                  </div>
-                </div>
-
-                <div className="bg-white border rounded-lg overflow-hidden hover:shadow-lg transition-shadow">
-                  <div className="relative">
-                    <img src="https://cq5as7pc73.ufs.sh/f/pHNnzIw3VjcgQhP8bAH1zD6Rg7Fh3sAdVwjO4BxbtPWk58iU" alt="" className="h-36 w-full object-cover" />
-                    <Badge variant="secondary" className="absolute top-3 left-3 bg-white border shadow-sm">
-                      Mandatory Training
-                    </Badge>
-                  </div>
-                  <div className="space-y-1.5 p-4">
-                    <p className="text-sm text-muted-foreground">Course | Self-paced</p>
-                    <h3 className="text-xl font-bold tracking-tighter leading-tight">Becoming Sales Consultant</h3>
-                    <p className="text-sm text-muted-foreground leading-relaxed">Learn from differences up to you will able to understand more deeply than knowledge and perceptions when we view our economy.</p>
-                  </div>
-                </div>
-
-
+              <DashboardCarousel />
+              {/*
+              <div className="grid xs:grid-cols-1 sm:grid-cols-2 gap-2">
+                <div>dsafladsokf</div>
               </div>
+              */}
             </div>
           </div>
 
