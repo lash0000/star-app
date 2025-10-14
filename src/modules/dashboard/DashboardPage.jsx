@@ -1,19 +1,60 @@
 import { useEffect, useState } from "react";
 import { Button } from "@/components/ui/button";
-import { Book, Shield, ArrowRight, X, Loader2 } from "lucide-react";
+import { Book, Shield, ArrowRight, X, Loader2, CheckCircle2, Clock, AlertCircle } from "lucide-react";
 import { Link } from "react-router-dom";
 import { Progress } from "@/components/ui/progress";
+import { HoverCard, HoverCardContent, HoverCardTrigger } from "@/components/ui/hover-card";
+import { Badge } from "@/components/ui/badge";
 
 function DashboardPage() {
   const [loading, setLoading] = useState(true);
+  const [progress, setProgress] = useState(0);
+
+  const onboardingTasks = [
+    {
+      title: "Checklist",
+      progress: 90,
+      completed: 9,
+      total: 10,
+      description:
+        "Complete all required onboarding checklist items including paperwork, equipment setup, and initial orientation.",
+      dueDate: "Due in 2 days",
+      status: "in-progress",
+    },
+    {
+      title: "Mandatory Trainings",
+      progress: 35,
+      completed: 7,
+      total: 20,
+      description:
+        "Complete all mandatory training modules including compliance, safety, security protocols, and company policies.",
+      dueDate: "Due in 1 week",
+      status: "in-progress",
+    },
+    {
+      title: "Supplemental Trainings",
+      progress: 75,
+      completed: 15,
+      total: 20,
+      description:
+        "Optional training modules to enhance your skills and knowledge in specific areas relevant to your role.",
+      status: "in-progress",
+    },
+  ]
 
   useEffect(() => {
-    // Temporary loading simulation (2 seconds)
-    const timer = setInterval(() => {
-      setLoading(false);
-    }, 2000);
+    const interval = setInterval(() => {
+      setProgress((prev) => {
+        const next = prev + 10;
+        if (next >= 100) {
+          clearInterval(interval);
+          setTimeout(() => setLoading(false), 400);
+        }
+        return next;
+      });
+    }, 50);
 
-    return () => clearInterval(timer);
+    return () => clearInterval(interval);
   }, []);
 
   if (loading) {
@@ -22,11 +63,8 @@ function DashboardPage() {
         id="dashboard-loading"
         className="flex items-center justify-center min-h-screen bg-muted"
       >
-        <div className="flex flex-col items-center justify-center gap-4">
-          <Loader2 className="animate-spin text-primary size-12" />
-          <p className="text-sm text-muted-foreground tracking-tight">
-            Loading Dashboard...
-          </p>
+        <div className="flex flex-col items-center justify-center gap-4 w-full max-w-sm">
+          <Progress value={progress} className="w-full h-2" />
         </div>
       </section>
     );
@@ -35,12 +73,12 @@ function DashboardPage() {
   return (
     <section id="dashboard-client">
       <div className="flex w-full justify-between flex-row gap-4">
-        <div id="main-content" className="grid grid-cols-4 gap-4 place-items-end items-start w-full">
-          <div id="announcements" className="col-span-2 gap-4 flex flex-col w-full">
-            <h1 className="text-4xl tracking-tighter font-bold text-primary">Dashboard</h1>
+        <div id="main-content" className="grid xs:grid-cols-1 lg:grid-cols-8 gap-8 place-items-end items-start w-full">
+          <div id="announcements" className="lg:col-span-5 gap-4 flex flex-col w-full">
+            <h1 className="text-2xl tracking-tighter font-bold text-primary">Dashboard</h1>
             <div
               id="banner-announcement"
-              className="relative bg-white pl-8 pt-8 pb-8 rounded-2xl shadow-sm max-w-4xl w-full overflow-hidden"
+              className="relative bg-white p-6 rounded-2xl shadow-sm w-full overflow-hidden"
             >
               <Button
                 variant="ghost"
@@ -53,10 +91,10 @@ function DashboardPage() {
 
               <div className="flex items-center justify-between gap-8 pr-0">
                 <div className="flex flex-col items-start gap-4 z-10">
-                  <span className="text-xs uppercase tracking-wider text-gray-400 font-medium">
+                  <span className="text-xs uppercase tracking-wider text-blue-800 font-medium">
                     Study on the go
                   </span>
-                  <h1 className="2xl:text-4xl lg:text-2xl font-bold text-primary leading-tight tracking-tighter">
+                  <h1 className="lg:text-4xl font-bold text-primary leading-tight tracking-tighter break-words ">
                     Sharpen Your Skills with Real Estate Investing up to Sales 100%
                   </h1>
                   <Link
@@ -78,44 +116,166 @@ function DashboardPage() {
                 </div>
               </div>
             </div>
+            <div className="border bg-white p-2 rounded-lg">
+              <h1 className="text-2xl tracking-tighter font-bold text-primary p-2">Available Courses</h1>
+              <div className="grid grid-cols-2 gap-2">
+                <div className="bg-white border rounded-lg overflow-hidden hover:shadow-lg transition-shadow">
+                  <div className="relative">
+                    <img src="https://cq5as7pc73.ufs.sh/f/pHNnzIw3VjcgQhP8bAH1zD6Rg7Fh3sAdVwjO4BxbtPWk58iU" alt="" className="h-36 w-full object-cover" />
+                    <Badge variant="secondary" className="absolute top-3 left-3 bg-white border shadow-sm">
+                      Supplemental Training
+                    </Badge>
+                  </div>
+                  <div className="space-y-1.5 p-4">
+                    <p className="text-sm text-muted-foreground">Course | Self-paced</p>
+                    <h3 className="text-xl font-bold tracking-tighter leading-tight">Becoming Sales Consultant</h3>
+                    <p className="text-sm text-muted-foreground leading-relaxed">Learn from differences up to you will able to understand more deeply than knowledge and perceptions when we view our economy.</p>
+                  </div>
+                </div>
+
+                <div className="bg-white border rounded-lg overflow-hidden hover:shadow-lg transition-shadow">
+                  <div className="relative">
+                    <img src="https://cq5as7pc73.ufs.sh/f/pHNnzIw3VjcgQhP8bAH1zD6Rg7Fh3sAdVwjO4BxbtPWk58iU" alt="" className="h-36 w-full object-cover" />
+                    <Badge variant="secondary" className="absolute top-3 left-3 bg-white border shadow-sm">
+                      Mandatory Training
+                    </Badge>
+                  </div>
+                  <div className="space-y-1.5 p-4">
+                    <p className="text-sm text-muted-foreground">Course | Self-paced</p>
+                    <h3 className="text-xl font-bold tracking-tighter leading-tight">Becoming Sales Consultant</h3>
+                    <p className="text-sm text-muted-foreground leading-relaxed">Learn from differences up to you will able to understand more deeply than knowledge and perceptions when we view our economy.</p>
+                  </div>
+                </div>
+
+
+              </div>
+            </div>
           </div>
 
-          <div className="col-span-2 bg-white rounded-xl p-2 border flex items-start flex-col">
-            <div className="bg-primary flex flex-col gap-2 text-primary-foreground w-full rounded-lg p-4">
-              <div className="w-full flex justify-between items-center">
-                <h1 className="tracking-tighter text-xl">Compliance</h1>
-                <Button>View All</Button>
+          <div className="lg:col-span-3 bg-white dark:bg-muted shadow-sm w-full h-fit rounded-xl p-2 border flex items-start flex-col xs:hidden lg:block">
+            <div className="bg-primary dark:bg-blue-700 flex flex-col w-full rounded-lg p-4 gap-2">
+              <div className="flex items-center justify-between">
+                <h1 className="text-white text-lg tracking-tighter">Compliance (5 task)</h1>
+                <Button className="bg-white text-black hover:bg-blue-700 hover:text-white">View All</Button>
               </div>
-              <div className="w-full flex justify-between items-start mt-4">
-                <div className="w-full flex flex-row justify-between gap-4">
-                  <div className="gap-4 flex justify-center items-center ">
-                    <div className="bg-white size-12 flex justify-center items-center rounded-full">
-                      <Shield className="text-primary" />
+              <div className="hover:bg-slate-900 rounded-lg transition-colors cursor-pointer select-none">
+                <div className="flex items-center flex-row justify-between w-full">
+                  <div className="flex items-center flex-row gap-2">
+                    <div className="bg-white h-fit p-1.5 rounded-full">
+                      <Book className="size-4" />
                     </div>
-                    <div className="space-y-1">
-                      <h1 className="2xl:text-xl lg:text-sm text-wrap">Marketing Strategy Fundamentals</h1>
-                      <div className="inline-flex items-center">
-                        <Book className="size-4 mr-2" />
-                        <p className="text-sm">Real Estate Management</p>
-                      </div>
+                    <div classname="flex flex-col line-clamp-2 h-fit">
+                      <h1 className="text-[.95rem] text-white">Marketing Strategy</h1>
+                      <p className="text-[.75rem] text-white">MSF101</p>
                     </div>
                   </div>
-                  <div className="space-y-1 2xl:text-xl lg:text-sm">
-                    <h1>Today, 11:59 PM</h1>
+                  <p className="text-[.75rem] text-white">Today, 11:59 PM</p>
+                </div>
+              </div>
+              <div className="hover:bg-slate-900 rounded-lg transition-colors cursor-pointer select-none">
+                <div className="flex items-center flex-row justify-between w-full">
+                  <div className="flex items-center flex-row gap-2">
+                    <div className="bg-white h-fit p-1.5 rounded-full">
+                      <Book className="size-4" />
+                    </div>
+                    <div classname="flex flex-col line-clamp-2 h-fit">
+                      <h1 className="text-[.95rem] text-white">Systems Architecture</h1>
+                      <p className="text-[.75rem] text-white">SIA101</p>
+                    </div>
                   </div>
+                  <p className="text-[.75rem] text-white">Today, 11:59 PM</p>
                 </div>
               </div>
             </div>
+            <div className="flex flex-col p-3">
+              <h1 className="text-2xl tracking-tighter font-bold text-primary">Your Stats</h1>
+              <p className="text-sm text-muted-foreground">See your activities in the past weeks.</p>
+            </div>
+            <div className="bg-slate-200/50 border flex flex-col w-full rounded-lg p-4">
+              <div className="flex items-center justify-between">
+                <h1 className="text-lg tracking-tighter">Completed Onboarding Tasks</h1>
+              </div>
+              <div className="flex flex-col gap-4 mt-2">
+                {onboardingTasks.map((task) => (
+                  <HoverCard key={task.title} openDelay={200}>
+                    <HoverCardTrigger asChild>
+                      <div className="cursor-pointer space-y-2">
+                        <div className="flex items-center justify-between">
+                          <h3 className="text-sm font-medium">{task.title}</h3>
+                          <span className="text-sm text-muted-foreground">
+                            {task.completed}/{task.total}
+                          </span>
+                        </div>
+                        <Progress value={task.progress} className="h-2 bg-slate-200" indicatorClassName="bg-indigo-900" />
+                      </div>
+                    </HoverCardTrigger>
+                    <HoverCardContent className="w-80" side="top" align="center" sideOffset={8}>
+                      <div className="space-y-3">
+                        <div className="flex items-start justify-between gap-2">
+                          <div>
+                            <h4 className="font-semibold text-sm">{task.title}</h4>
+                            <p className="text-xs text-muted-foreground mt-1">{task.description}</p>
+                          </div>
+                          {task.status === "completed" && <CheckCircle2 className="size-5 text-green-600 flex-shrink-0" />}
+                          {task.status === "in-progress" && <Clock className="size-5 text-blue-600 flex-shrink-0" />}
+                          {task.status === "pending" && <AlertCircle className="size-5 text-amber-600 flex-shrink-0" />}
+                        </div>
 
-            <div className="space-y-2 p-4 mt-2">
-              <h1 className="2xl:text-4xl lg:text-2xl tracking-tighter font-bold text-primary">Your Stats</h1>
-              <p className="text-muted-foreground">See your activities in the past weeks.</p>
+                        <div className="space-y-2">
+                          <div className="flex items-center justify-between text-sm">
+                            <span className="text-muted-foreground">Progress</span>
+                            <span className="font-medium">{task.progress}%</span>
+                          </div>
+                          <Progress value={task.progress} className="h-1.5" indicatorClassName="bg-indigo-900" />
+                          <div className="flex items-center justify-between text-xs text-muted-foreground">
+                            <span>
+                              {task.completed} of {task.total} completed
+                            </span>
+                            {task.dueDate && <span className="text-amber-700 font-medium">{task.dueDate}</span>}
+                          </div>
+                        </div>
+                      </div>
+                    </HoverCardContent>
+                  </HoverCard>
+                ))}
+              </div>
             </div>
 
-            <div className="flex flex-col gap-2 text-black w-full rounded-lg p-4">
-              <div className="w-full flex justify-between items-center">
-                <h1 className="tracking-tighter text-xl">Compliance</h1>
+            <div className="bg-slate-200/50 border flex flex-col w-full rounded-lg p-4 mt-2">
+              <div className="flex items-center justify-between mb-2">
+                <h1 className="text-lg tracking-tighter">Latest Achievements</h1>
               </div>
+              <div className="space-y-2">
+                <div className="hover:bg-slate-200 rounded-lg transition-colors cursor-pointer select-none">
+                  <div className="flex items-center flex-row justify-between w-full">
+                    <div className="flex items-center flex-row gap-3">
+                      <div className="bg-blue-300 h-fit p-2 rounded-xl">
+                        <Book className="size-6" />
+                      </div>
+                      <div classname="flex flex-col line-clamp-2 h-fit">
+                        <p className="text-[.75rem] text-muted-foreground">Course</p>
+                        <h1 className="text-[.95rem]">Marketing Strategy Fundamentals</h1>
+                        <p className="text-[.75rem] text-muted-foreground">MSF101</p>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div className="hover:bg-slate-200 rounded-lg transition-colors cursor-pointer select-none">
+                  <div className="flex items-center flex-row justify-between w-full">
+                    <div className="flex items-center flex-row gap-3">
+                      <div className="bg-blue-300 h-fit p-2 rounded-xl">
+                        <Book className="size-6" />
+                      </div>
+                      <div classname="flex flex-col line-clamp-2 h-fit">
+                        <p className="text-[.75rem] text-muted-foreground">Course</p>
+                        <h1 className="text-[.95rem]">Marketing Strategy Fundamentals</h1>
+                        <p className="text-[.75rem] text-muted-foreground">MSF101</p>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
             </div>
           </div>
         </div>

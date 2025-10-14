@@ -62,7 +62,6 @@ function SidebarLayout() {
                     className="hidden dark:block w-40"
                   />
                 </BreadcrumbItem>
-
               </BreadcrumbList>
             </Breadcrumb>
           </header>
