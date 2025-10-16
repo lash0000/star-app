@@ -142,7 +142,7 @@ export default function Checklist() {
         <h1 className="text-2xl font-bold tracking-tighter text-primary">
           Onboarding Checklist
         </h1>
-        <Tabs value={activeTab} onValueChange={setActiveTab} className="w-full">
+        <Tabs value={activeTab} onValueChange={setActiveTab}>
           <div className="flex flex-col sm:flex-row sm:items-center justify-between">
             <TabsList className="xs:fixed xs:bottom-0 xs:left-1/2 xs:-translate-x-1/2 md:relative md:bottom-[unset] md:left-[unset] md:-translate-x-[unset] gap-1 bg-background border-t xs:rounded-none md:rounded-full xs:w-full md:w-[unset]">
               <TabsTrigger
@@ -199,9 +199,9 @@ export default function Checklist() {
                 </Badge>
               </TabsTrigger>
             </TabsList>
-            <div id="onboard-checklist" className="xs:mt-4 sm:mt-0">
-              <div className="flex items-center gap-2">
-                <div className="relative flex-1 sm:flex-initial w-full lg:w-80">
+            <div id="onboard-checklist" className="xs:mt-2 sm:mt-0">
+              <div className="flex items-center gap-2 w-full">
+                <div className="relative w-full lg:w-80">
                   <button
                     onClick={() => setOpenCommand(true)}
                     className="h-10 w-full rounded-lg border border-input bg-background px-3 py-2 text-sm text-muted-foreground flex items-center justify-between hover:bg-accent transition-colors"
