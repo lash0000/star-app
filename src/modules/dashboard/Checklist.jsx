@@ -172,7 +172,7 @@ export default function Checklist() {
                   size={window.innerWidth < 768 ? 24 : 16}
                   aria-hidden="true"
                 />
-                Pending
+                <span>Pending</span>
                 <Badge
                   className="xs:hidden md:block bg-primary dark:bg-blue-500 text-primary-foreground ms-2 min-w-5 rounded-full transition-opacity group-data-[state=inactive]:opacity-50 dark:group-data-[state=inactive]:bg-white"
                   variant="secondary"
@@ -190,7 +190,7 @@ export default function Checklist() {
                   size={window.innerWidth < 768 ? 24 : 16}
                   aria-hidden="true"
                 />
-                Completed
+                <span>Completed</span>
                 <Badge
                   className="xs:hidden md:block bg-primary dark:bg-blue-500 text-primary-foreground ms-2 min-w-5 rounded-full transition-opacity group-data-[state=inactive]:opacity-50 dark:group-data-[state=inactive]:bg-white"
                   variant="secondary"
@@ -243,7 +243,7 @@ export default function Checklist() {
         {typeof window !== "undefined" && window.innerWidth < 768 ? (
           <Drawer open={openCommand} onOpenChange={setOpenCommand}>
             <DrawerContent className="p-4">
-              <DrawerHeader className="pb-2">
+              <DrawerHeader className="pb-4">
                 <DrawerTitle>
                   Search for onboarding
                 </DrawerTitle>
@@ -260,7 +260,7 @@ export default function Checklist() {
                 className="w-full rounded-sm border border-input focus-visible:ring-2 focus-visible:ring-blue-500 text-sm"
               />
 
-              <ScrollArea className="h-[200px]">
+              <ScrollArea className="mt-4 h-[200px]">
                 {filterTasks(tasks).length > 0 ? (
                   <div className="space-y-1.5 mt-3">
                     {filterTasks(tasks).map((task) => (
