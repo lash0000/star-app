@@ -130,7 +130,7 @@ function DashboardPage() {
               id="banner-announcement"
               className="relative bg-white dark:bg-gray-700/40 border dark:hover:border-blue-500 rounded-2xl shadow-sm w-full overflow-hidden p-1 transition-colors"
             >
-              <div className="border dark:border-gray-100/8 rounded-2xl p-3">
+              <div className="border border-slate-100 dark:border-gray-100/8 rounded-2xl p-3">
                 <Button
                   variant="ghost"
                   size="icon"
@@ -168,7 +168,7 @@ function DashboardPage() {
                 </div>
               </div>
             </div>
-            <div className="border bg-white dark:bg-gray-700/40 p-1 rounded-2xl">
+            <div className="border bg-white dark:bg-gray-700/40 p-1 rounded-3xl">
               <h1 className="text-2xl tracking-tighter font-bold text-primary p-2">Available Courses</h1>
               <DashboardCarousel />
             </div>
@@ -180,11 +180,11 @@ function DashboardPage() {
                 <h1 className="text-white text-lg tracking-tighter">Compliance (5 task)</h1>
                 <Button className="bg-white text-black hover:bg-blue-700 hover:text-white">View All</Button>
               </div>
-              <div className="dark:hover:bg-gray-700/30  rounded-lg transition-colors cursor-pointer select-none">
+              <div className="dark:hover:bg-gray-700/30 hover:bg-gray-600/30 rounded-lg transition-colors cursor-pointer select-none">
                 <div className="flex items-center flex-row justify-between w-full">
                   <div className="flex items-center flex-row gap-2">
                     <div className="bg-white dark:bg-gray-700/80 h-fit p-1.5 rounded-full">
-                      <Book className="size-4 text-blue-500" />
+                      <Book className="size-4 dark:text-blue-500" />
                     </div>
                     <div classname="flex flex-col line-clamp-2 h-fit">
                       <h1 className="text-[.95rem] text-white">Marketing Strategy</h1>
@@ -194,11 +194,11 @@ function DashboardPage() {
                   <p className="text-[.75rem] text-white">Today, 11:59 PM</p>
                 </div>
               </div>
-              <div className="dark:hover:bg-gray-700/30 rounded-lg transition-colors cursor-pointer select-none">
+              <div className="dark:hover:bg-gray-700/30 hover:bg-gray-600/30 rounded-lg transition-colors cursor-pointer select-none">
                 <div className="flex items-center flex-row justify-between w-full">
                   <div className="flex items-center flex-row gap-2">
                     <div className="bg-white dark:bg-gray-700/80 h-fit p-1.5 rounded-full">
-                      <Book className="size-4 text-blue-500" />
+                      <Book className="size-4 dark:text-blue-500" />
                     </div>
                     <div classname="flex flex-col line-clamp-2 h-fit">
                       <h1 className="text-[.95rem] text-white">Systems Architecture</h1>

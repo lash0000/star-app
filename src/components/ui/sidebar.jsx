@@ -241,7 +241,7 @@ function SidebarTrigger({
         toggleSidebar()
       }}
       {...props}>
-      {Icon ? <Icon /> : <span className="sr-only">Toggle Sidebar</span>}
+      {Icon ? <Icon className="xs:size-5 lg:size-4" /> : <span className="sr-only">Toggle Sidebar</span>}
       <span className="sr-only">Toggle Sidebar</span>
     </Button>
   );
