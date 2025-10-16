@@ -142,22 +142,21 @@ export default function Checklist() {
         <h1 className="text-2xl font-bold tracking-tighter text-primary">
           Onboarding Checklist
         </h1>
-
         <Tabs value={activeTab} onValueChange={setActiveTab} className="w-full">
-          <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between">
-            <TabsList className="gap-1 bg-slate-200 dark:bg-muted rounded-full xs:hidden lg:block">
+          <div className="flex flex-col sm:flex-row sm:items-center justify-between">
+            <TabsList className="xs:fixed xs:bottom-0 xs:left-1/2 xs:-translate-x-1/2 md:relative md:bottom-[unset] md:left-[unset] md:-translate-x-[unset] gap-1 bg-background border-t xs:rounded-none md:rounded-full xs:w-full md:w-[unset]">
               <TabsTrigger
                 value="todo"
-                className="group dark:data-[state=active]:text-blue-500 rounded-full data-[state=active]:shadow-sm"
+                className="xs:flex xs:flex-col md:flex-row group dark:data-[state=active]:text-blue-500 rounded-full md:data-[state=active]:shadow-sm"
               >
                 <BookOpen
-                  className="-ms-0.5 me-1.5 opacity-60"
-                  size={16}
+                  className="md:-ms-0.5 md:me-1.5 opacity-60 stroke-primary"
+                  size={window.innerWidth < 768 ? 24 : 16}
                   aria-hidden="true"
                 />
                 To-do
                 <Badge
-                  className="bg-primary dark:bg-blue-500 text-primary-foreground ms-2 min-w-5 rounded-full transition-opacity group-data-[state=inactive]:opacity-50 dark:group-data-[state=inactive]:bg-white"
+                  className="xs:hidden md:block bg-primary dark:bg-blue-500 text-primary-foreground ms-2 min-w-5 rounded-full transition-opacity group-data-[state=inactive]:opacity-50 dark:group-data-[state=inactive]:bg-white"
                   variant="secondary"
                 >
                   {todoTasks.length}
@@ -166,16 +165,16 @@ export default function Checklist() {
 
               <TabsTrigger
                 value="pending"
-                className="group dark:data-[state=active]:text-blue-500 rounded-full data-[state=active]:shadow-sm"
+                className="xs:flex xs:flex-col md:flex-row group dark:data-[state=active]:text-blue-500 rounded-full md:data-[state=active]:shadow-sm"
               >
                 <RefreshCw
-                  className="-ms-0.5 me-1.5 opacity-60"
-                  size={16}
+                  className="md:-ms-0.5 md:me-1.5 opacity-60 stroke-primary"
+                  size={window.innerWidth < 768 ? 24 : 16}
                   aria-hidden="true"
                 />
                 Pending
                 <Badge
-                  className="bg-primary dark:bg-blue-500 text-primary-foreground ms-2 min-w-5 rounded-full transition-opacity group-data-[state=inactive]:opacity-50 dark:group-data-[state=inactive]:bg-white"
+                  className="xs:hidden md:block bg-primary dark:bg-blue-500 text-primary-foreground ms-2 min-w-5 rounded-full transition-opacity group-data-[state=inactive]:opacity-50 dark:group-data-[state=inactive]:bg-white"
                   variant="secondary"
                 >
                   {pendingTasks.length}
@@ -184,16 +183,16 @@ export default function Checklist() {
 
               <TabsTrigger
                 value="completed"
-                className="group dark:data-[state=active]:text-blue-500 rounded-full data-[state=active]:shadow-sm"
+                className="xs:flex xs:flex-col md:flex-row group dark:data-[state=active]:text-blue-500 rounded-full md:data-[state=active]:shadow-sm"
               >
                 <CheckCheck
-                  className="-ms-0.5 me-1.5 opacity-60"
-                  size={16}
+                  className="md:-ms-0.5 md:me-1.5 opacity-60 "
+                  size={window.innerWidth < 768 ? 24 : 16}
                   aria-hidden="true"
                 />
                 Completed
                 <Badge
-                  className="bg-primary dark:bg-blue-500 text-primary-foreground ms-2 min-w-5 -mr-1 rounded-full transition-opacity group-data-[state=inactive]:opacity-50 dark:group-data-[state=inactive]:bg-white"
+                  className="xs:hidden md:block bg-primary dark:bg-blue-500 text-primary-foreground ms-2 min-w-5 rounded-full transition-opacity group-data-[state=inactive]:opacity-50 dark:group-data-[state=inactive]:bg-white"
                   variant="secondary"
                 >
                   {completedTasks.length}
@@ -224,23 +223,22 @@ export default function Checklist() {
                   </button>
                 </div>
                 <Button variant="outline" size="icon" className="shrink-0">
-                  <Filter className="h-4 w-4" />
+                  <Filter className="size-4" />
                   <span className="sr-only">Filter</span>
                 </Button>
               </div>
             </div>
           </div>
-          <TabsContent value="todo" className="mt-0">
+          <TabsContent value="todo" className="mt-0 mb-16">
             <TaskGrid tasks={filterTasks(todoTasks)} />
           </TabsContent>
-          <TabsContent value="pending" className="mt-0">
+          <TabsContent value="pending" className="mt-0 mb-16">
             <TaskGrid tasks={filterTasks(pendingTasks)} />
           </TabsContent>
-          <TabsContent value="completed" className="mt-0">
+          <TabsContent value="completed" className="mt-0 mb-16">
             <TaskGrid tasks={filterTasks(completedTasks)} />
           </TabsContent>
         </Tabs>
-
 
         {typeof window !== "undefined" && window.innerWidth < 768 ? (
           <Drawer open={openCommand} onOpenChange={setOpenCommand}>
@@ -273,17 +271,19 @@ export default function Checklist() {
                         <div className="flex justify-between items-center">
                           <div className="flex items-center gap-2">
                             <BookOpen className="size-4" />
-                            <span className="font-medium text-sm">{task.title}</span>
+                            <span className="font-medium xs:text-xs text-sm">{task.title}</span>
                             <Badge
                               variant="secondary"
-                              className="w-fit mt-1 text-xs bg-blue-100 text-blue-700 dark:bg-blue-600/20 dark:text-blue-600 border-blue-700"
+                              className="w-fit mt-1 text-xs bg-blue-100 text-blue-700 dark:bg-blue-600/20 dark:text-blue-600 border-blue-700 xs:hidden lg:block"
                             >
                               {task.category}
                             </Badge>
                           </div>
-                          <span className="text-xs text-muted-foreground">
+                          {/*
+                          <span className="text-sm text-muted-foreground">
                             Due: {task.dueDate}
                           </span>
+                          */}
                         </div>
                       </div>
                     ))}
@@ -379,6 +379,6 @@ function TaskCard({ task }) {
         </div>
 
       </CardContent>
-    </Card >
+    </Card>
   )
 }
