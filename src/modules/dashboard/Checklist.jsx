@@ -37,6 +37,30 @@ import {
   DrawerTrigger,
 } from "@/components/ui/drawer"
 import { ScrollArea } from "@/components/ui/scroll-area"
+import {
+  Pagination,
+  PaginationContent,
+  PaginationItem,
+  PaginationLink,
+  PaginationNext,
+  PaginationPrevious,
+} from "@/components/ui/pagination"
+import {
+  DropdownMenu,
+  DropdownMenuContent,
+  DropdownMenuGroup,
+  DropdownMenuItem,
+  DropdownMenuLabel,
+  DropdownMenuPortal,
+  DropdownMenuSeparator,
+  DropdownMenuShortcut,
+  DropdownMenuSub,
+  DropdownMenuSubContent,
+  DropdownMenuSubTrigger,
+  DropdownMenuTrigger,
+} from "@/components/ui/dropdown-menu"
+import { Checkbox } from "@/components/ui/checkbox"
+import { Label } from "@/components/ui/label"
 
 const tasks = [
   {
@@ -73,7 +97,7 @@ const tasks = [
     id: "4",
     title: "Property Management Basics",
     description:
-      "Learn from differences up to you will able to understand more deeply than knowledge and perceptions when we view our economy.",
+      "Understand property maintenance, tenant communication, and financial reporting essentials for real estate professionals.",
     category: "Mandatory Training",
     categoryColor: "red",
     dueDate: "Sep 20, 2025",
@@ -83,7 +107,7 @@ const tasks = [
     id: "5",
     title: "Client Communication Skills",
     description:
-      "Learn from differences up to you will able to understand more deeply than knowledge and perceptions when we view our economy.",
+      "Develop active listening, negotiation, and interpersonal skills to better connect with clients and close deals efficiently.",
     category: "Supplemental Training",
     categoryColor: "green",
     dueDate: "Sep 21, 2025",
@@ -93,19 +117,183 @@ const tasks = [
     id: "6",
     title: "Legal Compliance Training",
     description:
-      "Learn from differences up to you will able to understand more deeply than knowledge and perceptions when we view our economy.",
+      "Stay updated on national and local real estate laws, contracts, and fair housing guidelines.",
     category: "Mandatory Training",
     categoryColor: "red",
     dueDate: "Sep 18, 2025",
     status: "completed",
   },
-]
+  {
+    id: "7",
+    title: "Market Trends Analysis 2025",
+    description:
+      "Research current real estate market performance and predict opportunities for property investments.",
+    category: "Research Activity",
+    categoryColor: "yellow",
+    dueDate: "Sep 25, 2025",
+    status: "todo",
+  },
+  {
+    id: "8",
+    title: "Attend Sales Orientation",
+    description:
+      "Join the virtual onboarding session to learn company policies, sales structure, and growth opportunities.",
+    category: "Checklist",
+    categoryColor: "blue",
+    dueDate: "Sep 22, 2025",
+    status: "todo",
+  },
+  {
+    id: "9",
+    title: "Digital Marketing Training",
+    description:
+      "Enhance your online presence through social media campaigns, SEO, and digital branding techniques.",
+    category: "Supplemental Training",
+    categoryColor: "green",
+    dueDate: "Sep 28, 2025",
+    status: "pending",
+  },
+  {
+    id: "10",
+    title: "Real Estate Documentation Workshop",
+    description:
+      "Learn proper documentation, record keeping, and filing of contracts to maintain compliance.",
+    category: "Mandatory Training",
+    categoryColor: "red",
+    dueDate: "Sep 24, 2025",
+    status: "pending",
+  },
+  {
+    id: "11",
+    title: "Ethical Selling and Client Integrity",
+    description:
+      "Understand ethical boundaries, transparency, and trust-building in every sales interaction.",
+    category: "Mandatory Training",
+    categoryColor: "red",
+    dueDate: "Sep 15, 2025",
+    status: "completed",
+  },
+  {
+    id: "12",
+    title: "Participate in Property Expo 2025",
+    description:
+      "Engage with potential investors and showcase Philproperties’ latest developments.",
+    category: "Event Participation",
+    categoryColor: "purple",
+    dueDate: "Sep 30, 2025",
+    status: "todo",
+  },
+  {
+    id: "13",
+    title: "Customer Feedback Review",
+    description:
+      "Analyze collected client feedback and suggest improvements for the consultation process.",
+    category: "Team Task",
+    categoryColor: "orange",
+    dueDate: "Sep 27, 2025",
+    status: "pending",
+  },
+  {
+    id: "14",
+    title: "Internal Audit Preparation",
+    description:
+      "Review compliance checklist and prepare documentation for the quarterly audit.",
+    category: "Administrative",
+    categoryColor: "teal",
+    dueDate: "Sep 17, 2025",
+    status: "completed",
+  },
+  {
+    id: "15",
+    title: "Community Outreach Planning",
+    description:
+      "Coordinate with marketing to organize community awareness programs for property buyers.",
+    category: "Team Collaboration",
+    categoryColor: "pink",
+    dueDate: "Sep 26, 2025",
+    status: "todo",
+  },
+  {
+    id: "16",
+    title: "New Agent Mentorship",
+    description:
+      "Assist new hires with their onboarding tasks and guide them through their first week.",
+    category: "Mentorship",
+    categoryColor: "cyan",
+    dueDate: "Sep 23, 2025",
+    status: "pending",
+  },
+  {
+    id: "17",
+    title: "Update CRM Database",
+    description:
+      "Ensure all client and lead data are accurate and up to date in the system.",
+    category: "Administrative",
+    categoryColor: "teal",
+    dueDate: "Sep 16, 2025",
+    status: "completed",
+  },
+  {
+    id: "18",
+    title: "Team Strategy Meeting",
+    description:
+      "Discuss next quarter goals, performance targets, and marketing campaigns.",
+    category: "Team Collaboration",
+    categoryColor: "pink",
+    dueDate: "Sep 29, 2025",
+    status: "pending",
+  },
+  {
+    id: "19",
+    title: "Leadership and Management Course",
+    description:
+      "Gain insights on motivating team members, performance monitoring, and leadership values.",
+    category: "Supplemental Training",
+    categoryColor: "green",
+    dueDate: "Sep 20, 2025",
+    status: "completed",
+  },
+  {
+    id: "20",
+    title: "Weekly Performance Report",
+    description:
+      "Prepare and submit weekly performance metrics to the HR department.",
+    category: "Administrative",
+    categoryColor: "teal",
+    dueDate: "Sep 22, 2025",
+    status: "todo",
+  },
+];
+
+const ITEMS_PER_PAGE = 5;
 
 export default function Checklist() {
   const [searchQuery, setSearchQuery] = useState("")
   const [activeTab, setActiveTab] = useState("todo")
   const [openCommand, setOpenCommand] = useState(false)
-  const isMobile = useIsMobile()
+  const [pagination, setPagination] = useState({
+    todo: 1,
+    pending: 1,
+    completed: 1,
+  })
+
+  const getPaginatedTasks = (taskList) => {
+    const filtered = filterTasks(taskList)
+    const startIndex = (pagination[activeTab] - 1) * ITEMS_PER_PAGE
+    const endIndex = startIndex + ITEMS_PER_PAGE
+    return {
+      items: filtered.slice(startIndex, endIndex),
+      total: filtered.length,
+      totalPages: Math.ceil(filtered.length / ITEMS_PER_PAGE),
+    }
+  }
+
+  const handlePageChange = (page) => {
+    setPagination((prev) => ({
+      ...prev,
+      [activeTab]: page,
+    }))
+  }
 
   useEffect(() => {
     const down = (e) => {
@@ -136,6 +324,10 @@ export default function Checklist() {
   const pendingTasks = getTasksByStatus("pending")
   const completedTasks = getTasksByStatus("completed")
 
+  const todoPaginated = getPaginatedTasks(todoTasks)
+  const pendingPaginated = getPaginatedTasks(pendingTasks)
+  const completedPaginated = getPaginatedTasks(completedTasks)
+
   return (
     <section id="onboarding-checklist" className="w-full max-w-7xl mx-auto">
       <div className="flex flex-col gap-2">
@@ -147,10 +339,10 @@ export default function Checklist() {
             <TabsList className="xs:fixed xs:bottom-0 xs:left-1/2 xs:-translate-x-1/2 md:relative md:bottom-[unset] md:left-[unset] md:-translate-x-[unset] gap-1 bg-background border-t xs:rounded-none md:rounded-full xs:w-full md:w-[unset]">
               <TabsTrigger
                 value="todo"
-                className="xs:flex xs:flex-col md:flex-row group dark:data-[state=active]:text-blue-500 rounded-full md:data-[state=active]:shadow-sm"
+                className="xs:flex xs:flex-col md:flex-row group border border-slate-50/10 dark:border-gray-900/10 rounded-full md:dark:data-[state=active]:border-blue-500 md:dark:data-[state=active]:text-blue-500 md:dark:data-[state=active]:bg-blue-900/30"
               >
                 <BookOpen
-                  className="md:-ms-0.5 md:me-1.5 opacity-60 stroke-primary"
+                  className="md:-ms-0.5 md:me-1.5 opacity-60"
                   size={window.innerWidth < 768 ? 24 : 16}
                   aria-hidden="true"
                 />
@@ -165,10 +357,10 @@ export default function Checklist() {
 
               <TabsTrigger
                 value="pending"
-                className="xs:flex xs:flex-col md:flex-row group dark:data-[state=active]:text-blue-500 rounded-full md:data-[state=active]:shadow-sm"
+                className="xs:flex xs:flex-col md:flex-row group border border-slate-50/10 dark:border-gray-900/10 rounded-full md:dark:data-[state=active]:border-blue-500 md:dark:data-[state=active]:text-blue-500 md:dark:data-[state=active]:bg-blue-900/30"
               >
                 <RefreshCw
-                  className="md:-ms-0.5 md:me-1.5 opacity-60 stroke-primary"
+                  className="md:-ms-0.5 md:me-1.5 opacity-60"
                   size={window.innerWidth < 768 ? 24 : 16}
                   aria-hidden="true"
                 />
@@ -183,10 +375,10 @@ export default function Checklist() {
 
               <TabsTrigger
                 value="completed"
-                className="xs:flex xs:flex-col md:flex-row group dark:data-[state=active]:text-blue-500 rounded-full md:data-[state=active]:shadow-sm"
+                className="xs:flex xs:flex-col md:flex-row group border border-slate-50/10 dark:border-gray-900/10 rounded-full md:dark:data-[state=active]:border-blue-500 md:dark:data-[state=active]:text-blue-500 md:dark:data-[state=active]:bg-blue-900/30"
               >
                 <CheckCheck
-                  className="md:-ms-0.5 md:me-1.5 opacity-60 "
+                  className="md:-ms-0.5 md:me-1.5 opacity-60"
                   size={window.innerWidth < 768 ? 24 : 16}
                   aria-hidden="true"
                 />
@@ -222,122 +414,172 @@ export default function Checklist() {
                     </div>
                   </button>
                 </div>
-                <Button variant="outline" size="icon" className="shrink-0">
-                  <Filter className="size-4" />
-                  <span className="sr-only">Filter</span>
-                </Button>
+                <DropdownMenu>
+                  <DropdownMenuTrigger asChild>
+                    <Button variant="outline" size="icon" className="shrink-0">
+                      <Filter className="size-4" />
+                      <span className="sr-only">Filter</span>
+                    </Button>
+                  </DropdownMenuTrigger>
+                  <DropdownMenuContent className="w-64" align="end">
+                    <DropdownMenuLabel className="font-bold">Filtering</DropdownMenuLabel>
+                    <DropdownMenuGroup>
+                      <DropdownMenuItem>
+                        This week
+                        <DropdownMenuShortcut>⇧</DropdownMenuShortcut>
+                      </DropdownMenuItem>
+                      <DropdownMenuItem>
+                        Last week
+                        <DropdownMenuShortcut>⇧</DropdownMenuShortcut>
+                      </DropdownMenuItem>
+                      <DropdownMenuItem>
+                        Next month
+                        <DropdownMenuShortcut>⇧</DropdownMenuShortcut>
+                      </DropdownMenuItem>
+                    </DropdownMenuGroup>
+                    {/*<DropdownMenuSeparator />*/}
+                  </DropdownMenuContent>
+                </DropdownMenu>
               </div>
             </div>
           </div>
-          <TabsContent value="todo" className="mt-0 mb-16">
-            <TaskGrid tasks={filterTasks(todoTasks)} />
+          <TabsContent value="todo" className="mt-6 mb-20">
+            <TaskGrid tasks={todoPaginated.items} />
+            {todoPaginated.totalPages > 1 && (
+              <div className="mt-8 flex justify-center">
+                <PaginationComponent
+                  currentPage={pagination.todo}
+                  totalPages={todoPaginated.totalPages}
+                  onPageChange={handlePageChange}
+                />
+              </div>
+            )}
           </TabsContent>
-          <TabsContent value="pending" className="mt-0 mb-16">
-            <TaskGrid tasks={filterTasks(pendingTasks)} />
+          <TabsContent value="pending" className="mt-6 mb-20">
+            <TaskGrid tasks={pendingPaginated.items} />
+            {pendingPaginated.totalPages > 1 && (
+              <div className="mt-8 flex justify-center">
+                <PaginationComponent
+                  currentPage={pagination.pending}
+                  totalPages={pendingPaginated.totalPages}
+                  onPageChange={handlePageChange}
+                />
+              </div>
+            )}
           </TabsContent>
-          <TabsContent value="completed" className="mt-0 mb-16">
-            <TaskGrid tasks={filterTasks(completedTasks)} />
-          </TabsContent>
-        </Tabs>
+          <TabsContent value="completed" className="mt-6 mb-20">
+            <TaskGrid tasks={completedPaginated.items} />
+            {completedPaginated.totalPages > 1 && (
+              <div className="mt-8 flex justify-center">
+                <PaginationComponent
+                  currentPage={pagination.completed}
+                  totalPages={completedPaginated.totalPages}
+                  onPageChange={handlePageChange}
+                />
+              </div>
+            )}
+          </TabsContent>        </Tabs>
 
-        {typeof window !== "undefined" && window.innerWidth < 768 ? (
-          <Drawer open={openCommand} onOpenChange={setOpenCommand}>
-            <DrawerContent className="p-4">
-              <DrawerHeader className="pb-4">
-                <DrawerTitle>
-                  Search for onboarding
-                </DrawerTitle>
-                <DrawerDescription className="text-sm text-muted-foreground">
-                  All onboarding tasks will appear below.
-                </DrawerDescription>
-              </DrawerHeader>
+        {
+          typeof window !== "undefined" && window.innerWidth < 768 ? (
+            <Drawer open={openCommand} onOpenChange={setOpenCommand}>
+              <DrawerContent className="p-4">
+                <DrawerHeader className="pb-4">
+                  <DrawerTitle>
+                    Search for onboarding
+                  </DrawerTitle>
+                  <DrawerDescription className="text-sm text-muted-foreground">
+                    All onboarding tasks will appear below.
+                  </DrawerDescription>
+                </DrawerHeader>
 
-              {/* Search Input */}
-              <Input
-                placeholder="Search onboarding tasks..."
-                value={searchQuery}
-                onChange={(e) => setSearchQuery(e.target.value)}
-                className="w-full rounded-sm border border-input focus-visible:ring-2 focus-visible:ring-blue-500 text-sm"
-              />
+                {/* Search Input */}
+                <Input
+                  placeholder="Search onboarding tasks..."
+                  value={searchQuery}
+                  onChange={(e) => setSearchQuery(e.target.value)}
+                  className="w-full rounded-sm border border-input focus-visible:ring-2 focus-visible:ring-blue-500 text-sm"
+                />
 
-              <ScrollArea className="mt-4 h-[200px]">
-                {filterTasks(tasks).length > 0 ? (
-                  <div className="space-y-1.5 mt-3">
-                    {filterTasks(tasks).map((task) => (
-                      <div
-                        key={task.id}
-                        className="hover:bg-muted transition-colors py-1.5"
-                      >
-                        <div className="flex justify-between items-center">
-                          <div className="flex items-center gap-2">
-                            <BookOpen className="size-4" />
-                            <span className="font-medium xs:text-xs text-sm">{task.title}</span>
-                            <Badge
-                              variant="secondary"
-                              className="w-fit mt-1 text-xs bg-blue-100 text-blue-700 dark:bg-blue-600/20 dark:text-blue-600 border-blue-700 xs:hidden lg:block"
-                            >
-                              {task.category}
-                            </Badge>
-                          </div>
-                          {/*
+                <ScrollArea className="mt-4 h-[200px]">
+                  {filterTasks(tasks).length > 0 ? (
+                    <div className="space-y-1.5 mt-3">
+                      {filterTasks(tasks).map((task) => (
+                        <div
+                          key={task.id}
+                          className="hover:bg-muted transition-colors py-1.5"
+                        >
+                          <div className="flex justify-between items-center">
+                            <div className="flex items-center gap-2">
+                              <BookOpen className="size-4" />
+                              <span className="font-medium xs:text-xs text-sm">{task.title}</span>
+                              <Badge
+                                variant="secondary"
+                                className="w-fit mt-1 text-xs bg-blue-100 text-blue-700 dark:bg-blue-600/20 dark:text-blue-600 border-blue-700 xs:hidden lg:block"
+                              >
+                                {task.category}
+                              </Badge>
+                            </div>
+                            {/*
                           <span className="text-sm text-muted-foreground">
                             Due: {task.dueDate}
                           </span>
                           */}
+                          </div>
                         </div>
-                      </div>
-                    ))}
-                  </div>
-                ) : (
-                  <p className="text-sm text-muted-foreground text-center mt-4">
-                    No tasks found.
-                  </p>
-                )}
-              </ScrollArea>
-            </DrawerContent>
-          </Drawer>
-        ) : (
-          <CommandDialog
-            open={openCommand}
-            onOpenChange={setOpenCommand}
-            className="border-4 border-slate-300 dark:border-blue-950"
-          >
-            <CommandInput placeholder="Search for onboarding..." />
-            <CommandList>
-              <CommandEmpty>No results found.</CommandEmpty>
-              <CommandGroup heading="Pages">
+                      ))}
+                    </div>
+                  ) : (
+                    <p className="text-sm text-muted-foreground text-center mt-4">
+                      No tasks found.
+                    </p>
+                  )}
+                </ScrollArea>
+              </DrawerContent>
+            </Drawer>
+          ) : (
+            <CommandDialog
+              open={openCommand}
+              onOpenChange={setOpenCommand}
+              className="border-4 border-slate-300 dark:border-blue-950"
+            >
+              <CommandInput placeholder="Search for onboarding..." />
+              <CommandList>
+                <CommandEmpty>No results found.</CommandEmpty>
+                <CommandGroup heading="Pages">
+                  <CommandItem className="font-medium">
+                    <ArrowRight />
+                    <span>Getting Started</span>
+                  </CommandItem>
+                  <CommandItem className="font-medium">
+                    <ArrowRight />
+                    <span>Configuration</span>
+                  </CommandItem>
+                  <CommandItem className="font-medium">
+                    <ArrowRight />
+                    <span>Learn the Basics</span>
+                  </CommandItem>
+                  <CommandItem className="font-medium">
+                    <ArrowRight />
+                    <span>Charts</span>
+                  </CommandItem>
+                </CommandGroup>
+                <CommandGroup heading="Get Started">
+                  <CommandItem className="font-medium">
+                    <ArrowRight />
+                    <span>Introduction</span>
+                  </CommandItem>
+                </CommandGroup>
                 <CommandItem className="font-medium">
-                  <ArrowRight />
-                  <span>Getting Started</span>
+                  <CornerDownLeft />
+                  <span>Go to Page</span>
                 </CommandItem>
-                <CommandItem className="font-medium">
-                  <ArrowRight />
-                  <span>Configuration</span>
-                </CommandItem>
-                <CommandItem className="font-medium">
-                  <ArrowRight />
-                  <span>Learn the Basics</span>
-                </CommandItem>
-                <CommandItem className="font-medium">
-                  <ArrowRight />
-                  <span>Charts</span>
-                </CommandItem>
-              </CommandGroup>
-              <CommandGroup heading="Get Started">
-                <CommandItem className="font-medium">
-                  <ArrowRight />
-                  <span>Introduction</span>
-                </CommandItem>
-              </CommandGroup>
-              <CommandItem className="font-medium">
-                <CornerDownLeft />
-                <span>Go to Page</span>
-              </CommandItem>
-            </CommandList>
-          </CommandDialog>
-        )}
-      </div>
-    </section>
+              </CommandList>
+            </CommandDialog>
+          )
+        }
+      </div >
+    </section >
   )
 }
 
@@ -380,5 +622,41 @@ function TaskCard({ task }) {
 
       </CardContent>
     </Card>
+  )
+}
+
+function PaginationComponent({ currentPage, totalPages, onPageChange }) {
+  const pages = Array.from({ length: totalPages }, (_, i) => i + 1)
+
+  return (
+    <Pagination>
+      <PaginationContent>
+        <PaginationItem>
+          <PaginationPrevious
+            onClick={() => currentPage > 1 && onPageChange(currentPage - 1)}
+            className={currentPage === 1 ? "pointer-events-none opacity-50" : "cursor-pointer"}
+          />
+        </PaginationItem>
+
+        {pages.map((page) => (
+          <PaginationItem key={page}>
+            <PaginationLink
+              onClick={() => onPageChange(page)}
+              isActive={page === currentPage}
+              className="cursor-pointer"
+            >
+              {page}
+            </PaginationLink>
+          </PaginationItem>
+        ))}
+
+        <PaginationItem>
+          <PaginationNext
+            onClick={() => currentPage < totalPages && onPageChange(currentPage + 1)}
+            className={currentPage === totalPages ? "pointer-events-none opacity-50" : "cursor-pointer"}
+          />
+        </PaginationItem>
+      </PaginationContent>
+    </Pagination>
   )
 }
