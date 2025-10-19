@@ -595,7 +595,7 @@ function TaskGrid({ tasks }) {
 
 function TaskCard({ task }) {
   return (
-    <Card className="hover:shadow-md hover:border-gray-300 transition-colors dark:hover:border-blue-500 py-0 border shadow-none p-2 rounded-xl">
+    <Card className="hover:shadow-md hover:border-gray-300 transition-colors dark:hover:border-blue-500 py-0 border shadow-none p-2 rounded-xl h-fit">
       <CardContent className="space-y-3 p-2 border border-gray-100 dark:border-gray-700/20 rounded-xl">
         <Badge
           variant="secondary"
