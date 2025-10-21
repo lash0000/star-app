@@ -11,10 +11,10 @@
 * Oct. 10, 2025       lash0000          001            Initial creation - STAR Phase 1 Project
 ***********************************************************************************************************************************************************************/
 
-import { useEffect } from "react";
-import { BrowserRouter as Router, Routes, Route, useLocation } from "react-router-dom";
+import { BrowserRouter as Router, Routes } from "react-router-dom";
 import { ThemeProvider } from "./components/ThemeProvider";
 import { Helmet, HelmetProvider } from "react-helmet-async";
+import { useLocation } from "react-router-dom";
 import LandingRoutes from "./routes/LandingRoutes";
 import UserRoutes from "./routes/UserRoutes";
 
@@ -22,11 +22,10 @@ const pageMetadata = {
   "/": {
     title: "On your own schedule, learning journey begins",
     description:
-      "Still in development phase for Sales Training and Recruitment of Philproperites Corp.",
+      "Still in development phase for available open online courses from Philproperties International Corporation.",
     keywords: "open online courses, philproperties, online courses, training, onboarding",
     ogTitle: "On your own schedule, learning journey begins",
-    ogDescription:
-      "Still in development phase for Sales Training and Recruitment of Philproperites Corp.",
+    ogDescription: "Still in development phase for available open online courses from Philproperties International Corporation.",
     ogImage: "https://95306gu5u4.ufs.sh/f/uBRuoG2BEPFD7KSEgHPf2HyENZzXqhfcGpQsYtIMT9F5RWUC",
   },
   "/login": {
@@ -51,17 +50,14 @@ const pageMetadata = {
 
 function TitleUpdater() {
   const location = useLocation();
-  const metadata =
-    pageMetadata[location.pathname] || {
-      title:
-        "On your own schedule learning journey begins | Sales Training and Recruitment Services by Philproperties Corp.",
-      description: "This is still in development phase. Come back soon.",
-      keywords: "philproperties, sales-training, online courses, free courses, philpro",
-      ogTitle:
-        "On your own schedule learning journey begins | Sales Training and Recruitment Services by Philproperties Corp.",
-      ogDescription: "This is still in development phase. Come back soon.",
-      ogImage: "https://95306gu5u4.ufs.sh/f/uBRuoG2BEPFD7KSEgHPf2HyENZzXqhfcGpQsYtIMT9F5RWUC",
-    };
+  const metadata = pageMetadata[location.pathname] || {
+    title: "On your own schedule learning journey begins | Online courses available from Philproperties Corp.",
+    description: "This is still in development phase. Come back soon.",
+    keywords: "philproperties, sales-training, online courses, free courses, philpro",
+    ogTitle: "On your own schedule learning journey begins | Online Courses available by Philproperties Corp.",
+    ogDescription: "This is still in development phase. Come back soon.",
+    ogImage: "https://95306gu5u4.ufs.sh/f/uBRuoG2BEPFD7KSEgHPf2HyENZzXqhfcGpQsYtIMT9F5RWUC",
+  };
 
   return (
     <Helmet>
@@ -78,18 +74,26 @@ function TitleUpdater() {
   );
 }
 
+function Layout() {
+  return (
+    <>
+      <TitleUpdater />
+      <main className="font-medium selection:bg-primary selection:text-white dark:selection:bg-white dark:selection:text-black">
+        <Routes>
+          {LandingRoutes()}
+          {UserRoutes()}
+        </Routes>
+      </main>
+    </>
+  );
+}
+
 function App() {
   return (
     <HelmetProvider>
       <ThemeProvider defaultTheme="light" storageKey="vite-ui-theme">
         <Router>
-          <TitleUpdater key={window.location.pathname} />
-          <main className="font-medium selection:bg-primary selection:text-white dark:selection:bg-white dark:selection:text-black">
-            <Routes>
-              {LandingRoutes()}
-              {UserRoutes()}
-            </Routes>
-          </main>
+          <Layout />
         </Router>
       </ThemeProvider>
     </HelmetProvider>
@@ -97,5 +101,6 @@ function App() {
 }
 
 export default App;
+
 
 

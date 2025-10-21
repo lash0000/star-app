@@ -7,7 +7,9 @@ import {
   Filter,
   Clock,
   ArrowRight,
-  CornerDownLeft
+  CornerDownLeft,
+  BookText,
+  Coins
 } from "lucide-react"
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/rounded-tabs"
 import { Badge } from "@/components/ui/badge"
@@ -64,209 +66,109 @@ import { Link } from "react-router-dom"
 const tasks = [
   {
     id: "1",
-    title: "Visit Philproperties Website",
+    title: "Becoming a Sales Consultant",
     description:
-      "Learn from differences up to you will able to understand more deeply than knowledge and perceptions when we view our economy.",
-    category: "Checklist",
-    categoryColor: "blue",
-    dueDate: "Sep 19, 2025",
+      "Understand the core principles of property ownership, sales, and investment opportunities in the Philippine real estate market.",
+    category: "Free",
+    categoryColor: "green",
+    dueDate: "Oct 25, 2025",
     status: "todo",
   },
   {
     id: "2",
-    title: "Become Sales Consultant",
+    title: "Sales Mastery Program",
     description:
-      "Learn from differences up to you will able to understand more deeply than knowledge and perceptions when we view our economy.",
-    category: "Mandatory Training",
-    categoryColor: "red",
-    dueDate: "Sep 19, 2025",
+      "Enhance your negotiation, presentation, and closing skills with practical sales techniques tailored for agents.",
+    category: "Free",
+    categoryColor: "green",
+    dueDate: "Oct 30, 2025",
     status: "todo",
   },
   {
     id: "3",
-    title: "Real Estate Broker: Fundamentals",
+    title: "Digital Marketing for Real Estate",
     description:
-      "Learn from differences up to you will able to understand more deeply than knowledge and perceptions when we view our economy.",
-    category: "Supplemental Training",
-    categoryColor: "green",
-    dueDate: "Sep 19, 2025",
-    status: "todo",
+      "Learn social media campaigns, SEO, and online branding to boost your presence and attract more property leads.",
+    category: "Subscription",
+    categoryColor: "red",
+    dueDate: "Nov 5, 2025",
+    status: "pending",
   },
   {
     id: "4",
-    title: "Property Management Basics",
+    title: "Property Laws and Compliance",
     description:
-      "Understand property maintenance, tenant communication, and financial reporting essentials for real estate professionals.",
-    category: "Mandatory Training",
+      "Stay updated on property taxation, local ordinances, and legal compliance requirements for real estate professionals.",
+    category: "Subscription",
     categoryColor: "red",
-    dueDate: "Sep 20, 2025",
+    dueDate: "Nov 10, 2025",
     status: "pending",
   },
   {
     id: "5",
-    title: "Client Communication Skills",
+    title: "Leadership and Team Management",
     description:
-      "Develop active listening, negotiation, and interpersonal skills to better connect with clients and close deals efficiently.",
-    category: "Supplemental Training",
+      "Develop effective leadership habits and strategies to manage sales teams and motivate new agents for performance success.",
+    category: "Free",
     categoryColor: "green",
-    dueDate: "Sep 21, 2025",
-    status: "pending",
+    dueDate: "Nov 15, 2025",
+    status: "completed",
   },
   {
     id: "6",
-    title: "Legal Compliance Training",
+    title: "Market Trends and Analytics",
     description:
-      "Stay updated on national and local real estate laws, contracts, and fair housing guidelines.",
-    category: "Mandatory Training",
-    categoryColor: "red",
-    dueDate: "Sep 18, 2025",
-    status: "completed",
+      "Analyze real estate data and identify profitable investment patterns through trend evaluation and forecasting.",
+    category: "Free",
+    categoryColor: "green",
+    dueDate: "Nov 20, 2025",
+    status: "todo",
   },
   {
     id: "7",
-    title: "Market Trends Analysis 2025",
+    title: "Ethics and Professional Conduct",
     description:
-      "Research current real estate market performance and predict opportunities for property investments.",
-    category: "Research Activity",
-    categoryColor: "yellow",
-    dueDate: "Sep 25, 2025",
-    status: "todo",
+      "Build a strong professional reputation through transparent practices, ethical decision-making, and client trust.",
+    category: "Subscription",
+    categoryColor: "red",
+    dueDate: "Nov 25, 2025",
+    status: "completed",
   },
   {
     id: "8",
-    title: "Attend Sales Orientation",
+    title: "Property Management Essentials",
     description:
-      "Join the virtual onboarding session to learn company policies, sales structure, and growth opportunities.",
-    category: "Checklist",
-    categoryColor: "blue",
-    dueDate: "Sep 22, 2025",
-    status: "todo",
+      "Learn to manage residential and commercial properties, focusing on tenant relations, maintenance, and reporting.",
+    category: "Subscription",
+    categoryColor: "red",
+    dueDate: "Dec 1, 2025",
+    status: "pending",
   },
   {
     id: "9",
-    title: "Digital Marketing Training",
+    title: "Real Estate Brokerage Operations",
     description:
-      "Enhance your online presence through social media campaigns, SEO, and digital branding techniques.",
-    category: "Supplemental Training",
+      "Understand brokerage licensing, documentation, and operations essential to run a compliant real estate business.",
+    category: "Free",
     categoryColor: "green",
-    dueDate: "Sep 28, 2025",
-    status: "pending",
+    dueDate: "Dec 5, 2025",
+    status: "todo",
   },
   {
     id: "10",
-    title: "Real Estate Documentation Workshop",
+    title: "Community Engagement and Networking",
     description:
-      "Learn proper documentation, record keeping, and filing of contracts to maintain compliance.",
-    category: "Mandatory Training",
-    categoryColor: "red",
-    dueDate: "Sep 24, 2025",
-    status: "pending",
-  },
-  {
-    id: "11",
-    title: "Ethical Selling and Client Integrity",
-    description:
-      "Understand ethical boundaries, transparency, and trust-building in every sales interaction.",
-    category: "Mandatory Training",
-    categoryColor: "red",
-    dueDate: "Sep 15, 2025",
-    status: "completed",
-  },
-  {
-    id: "12",
-    title: "Participate in Property Expo 2025",
-    description:
-      "Engage with potential investors and showcase Philproperties’ latest developments.",
-    category: "Event Participation",
-    categoryColor: "purple",
-    dueDate: "Sep 30, 2025",
-    status: "todo",
-  },
-  {
-    id: "13",
-    title: "Customer Feedback Review",
-    description:
-      "Analyze collected client feedback and suggest improvements for the consultation process.",
-    category: "Team Task",
-    categoryColor: "orange",
-    dueDate: "Sep 27, 2025",
-    status: "pending",
-  },
-  {
-    id: "14",
-    title: "Internal Audit Preparation",
-    description:
-      "Review compliance checklist and prepare documentation for the quarterly audit.",
-    category: "Administrative",
-    categoryColor: "teal",
-    dueDate: "Sep 17, 2025",
-    status: "completed",
-  },
-  {
-    id: "15",
-    title: "Community Outreach Planning",
-    description:
-      "Coordinate with marketing to organize community awareness programs for property buyers.",
-    category: "Team Collaboration",
-    categoryColor: "pink",
-    dueDate: "Sep 26, 2025",
-    status: "todo",
-  },
-  {
-    id: "16",
-    title: "New Agent Mentorship",
-    description:
-      "Assist new hires with their onboarding tasks and guide them through their first week.",
-    category: "Mentorship",
-    categoryColor: "cyan",
-    dueDate: "Sep 23, 2025",
-    status: "pending",
-  },
-  {
-    id: "17",
-    title: "Update CRM Database",
-    description:
-      "Ensure all client and lead data are accurate and up to date in the system.",
-    category: "Administrative",
-    categoryColor: "teal",
-    dueDate: "Sep 16, 2025",
-    status: "completed",
-  },
-  {
-    id: "18",
-    title: "Team Strategy Meeting",
-    description:
-      "Discuss next quarter goals, performance targets, and marketing campaigns.",
-    category: "Team Collaboration",
-    categoryColor: "pink",
-    dueDate: "Sep 29, 2025",
-    status: "pending",
-  },
-  {
-    id: "19",
-    title: "Leadership and Management Course",
-    description:
-      "Gain insights on motivating team members, performance monitoring, and leadership values.",
-    category: "Supplemental Training",
+      "Build and strengthen your network through local community projects, events, and client relationship activities.",
+    category: "Free",
     categoryColor: "green",
-    dueDate: "Sep 20, 2025",
-    status: "completed",
-  },
-  {
-    id: "20",
-    title: "Weekly Performance Report",
-    description:
-      "Prepare and submit weekly performance metrics to the HR department.",
-    category: "Administrative",
-    categoryColor: "teal",
-    dueDate: "Sep 22, 2025",
+    dueDate: "Dec 10, 2025",
     status: "todo",
   },
-];
+]
 
 const ITEMS_PER_PAGE = 5;
 
-export default function Checklist() {
+export default function Courses() {
   const [searchQuery, setSearchQuery] = useState("")
   const [activeTab, setActiveTab] = useState("todo")
   const [openCommand, setOpenCommand] = useState(false)
@@ -338,9 +240,14 @@ export default function Checklist() {
   return (
     <section id="onboarding-checklist" className="w-full lg:max-w-7xl lg:mx-auto xs:p-4 lg:p-8">
       <div className="flex flex-col gap-2">
-        <h1 className="text-2xl font-bold tracking-tighter text-primary">
-          Onboarding Checklist
-        </h1>
+        <div className="flex flex-col gap-2">
+          <h1 className="text-2xl font-bold tracking-tighter text-primary">
+            Courses
+          </h1>
+          <p className="text-muted-foreground">
+            Structured courses for every step of your journey
+          </p>
+        </div>
         <Tabs value={activeTab} onValueChange={setActiveTab}>
           <div className="flex flex-col sm:flex-row sm:items-center justify-between">
             <TabsList className="xs:fixed xs:bottom-0 xs:left-1/2 xs:-translate-x-1/2 md:relative md:bottom-[unset] md:left-[unset] md:-translate-x-[unset] gap-1 bg-background border-t xs:rounded-none md:rounded-full xs:w-full md:w-[unset]">
@@ -348,12 +255,12 @@ export default function Checklist() {
                 value="todo"
                 className="xs:flex xs:flex-col md:flex-row group border border-slate-50/10 dark:border-gray-900/10 rounded-full md:dark:data-[state=active]:border-blue-500 md:dark:data-[state=active]:text-blue-500 md:dark:data-[state=active]:bg-blue-900/30"
               >
-                <BookOpen
+                <BookText
                   className="md:-ms-0.5 md:me-1.5 opacity-60"
                   size={window.innerWidth < 768 ? 24 : 16}
                   aria-hidden="true"
                 />
-                To-do
+                Free
                 <Badge
                   className="xs:hidden md:block bg-primary dark:bg-blue-500 text-primary-foreground ms-2 min-w-5 rounded-full transition-opacity group-data-[state=inactive]:opacity-50 dark:group-data-[state=inactive]:bg-white"
                   variant="secondary"
@@ -361,16 +268,17 @@ export default function Checklist() {
                   {todoTasks.length}
                 </Badge>
               </TabsTrigger>
+
               <TabsTrigger
                 value="pending"
                 className="xs:flex xs:flex-col md:flex-row group border border-slate-50/10 dark:border-gray-900/10 rounded-full md:dark:data-[state=active]:border-blue-500 md:dark:data-[state=active]:text-blue-500 md:dark:data-[state=active]:bg-blue-900/30"
               >
-                <RefreshCw
+                <Coins
                   className="md:-ms-0.5 md:me-1.5 opacity-60"
                   size={window.innerWidth < 768 ? 24 : 16}
                   aria-hidden="true"
                 />
-                <span>Pending</span>
+                <span>Subscription</span>
                 <Badge
                   className="xs:hidden md:block bg-primary dark:bg-blue-500 text-primary-foreground ms-2 min-w-5 rounded-full transition-opacity group-data-[state=inactive]:opacity-50 dark:group-data-[state=inactive]:bg-white"
                   variant="secondary"
@@ -378,27 +286,9 @@ export default function Checklist() {
                   {pendingTasks.length}
                 </Badge>
               </TabsTrigger>
-
-              <TabsTrigger
-                value="completed"
-                className="xs:flex xs:flex-col md:flex-row group border border-slate-50/10 dark:border-gray-900/10 rounded-full md:dark:data-[state=active]:border-blue-500 md:dark:data-[state=active]:text-blue-500 md:dark:data-[state=active]:bg-blue-900/30"
-              >
-                <CheckCheck
-                  className="md:-ms-0.5 md:me-1.5 opacity-60"
-                  size={window.innerWidth < 768 ? 24 : 16}
-                  aria-hidden="true"
-                />
-                <span>Completed</span>
-                <Badge
-                  className="xs:hidden md:block bg-primary dark:bg-blue-500 text-primary-foreground ms-2 min-w-5 rounded-full transition-opacity group-data-[state=inactive]:opacity-50 dark:group-data-[state=inactive]:bg-white"
-                  variant="secondary"
-                >
-                  {completedTasks.length}
-                </Badge>
-              </TabsTrigger>
             </TabsList>
             <div id="onboard-checklist" className="xs:mt-2 sm:mt-0">
-              <div className="flex items-center gap-2 w-full">
+              <div className="flex items-center gap-2 xs:w-full sm:w-96 md:w-full">
                 <div className="relative w-full lg:w-80">
                   <button
                     onClick={() => setOpenCommand(true)}
@@ -494,10 +384,10 @@ export default function Checklist() {
               <DrawerContent className="p-4">
                 <DrawerHeader className="pb-4">
                   <DrawerTitle>
-                    Search for onboarding
+                    Search for available courses
                   </DrawerTitle>
                   <DrawerDescription className="text-sm text-muted-foreground">
-                    All onboarding tasks will appear below.
+                    All courses will appear below so learn anything.
                   </DrawerDescription>
                 </DrawerHeader>
 
@@ -602,36 +492,55 @@ function TaskGrid({ tasks }) {
 }
 
 function TaskCard({ task }) {
+  const colorMap = {
+    pink: "bg-pink-100 text-pink-700 border-pink-700",
+    green:
+      "bg-green-100 text-green-700 border-green-700 dark:bg-green-700/20 dark:text-green-600 dark:border-green-600",
+    red:
+      "bg-red-100 text-red-700 border-red-700 dark:bg-red-600/20 dark:text-red-600 dark:border-red-600",
+    blue:
+      "bg-blue-100 text-blue-500 border-blue-500 dark:bg-blue-600/20 dark:text-blue-600 dark:border-blue-600",
+    default:
+      "bg-gray-100 text-gray-700 border-gray-700 dark:bg-gray-600/20 dark:text-gray-600 dark:border-gray-600",
+  }
+
+  const badgeColor =
+    colorMap[task.categoryColor] || colorMap.default
+
   return (
-    <Link to="">
+    <Link to="/dashboard/course/1234567890">
       <Card className="hover:shadow-md hover:border-gray-300 transition-colors dark:hover:border-blue-500 py-0 border shadow-none p-2 rounded-xl h-fit">
         <CardContent className="space-y-3 p-2 border border-gray-100 dark:border-gray-700/20 rounded-xl">
-          <Badge
-            variant="secondary"
-            className={`w-fit text-xs font-medium ${task.categoryColor === "pink"
-              ? "bg-pink-100 text-pink-700 border-pink-700"
-              : task.categoryColor === "green"
-                ? "bg-green-100 text-green-700 border-green-700 dark:bg-green-700/20 dark:text-green-600 dark:border-green-600"
-                : task.categoryColor === "red"
-                  ? "bg-red-100 text-red-700 border-red-700 dark:bg-red-600/20 dark:text-red-600 dark:border-red-600"
-                  : "bg-blue-100 text-blue-500 border-blue-500 dark:bg-blue-600/20 dark:text-blue-600 dark:border-blue-600"
-              }`}
-          >
-            {task.category}
-          </Badge>
-          <h3 className="font-semibold text-lg leading-tight">{task.title}</h3>
-          <p className="text-sm text-muted-foreground leading-relaxed">{task.description}</p>
-          <div className="flex items-center gap-2 text-sm pt-2">
-            <Clock className="h-4 w-4 text-muted-foreground" />
-            <span className="">
-              Due Date:{" "}
-              <span className="text-foreground font-medium">{task.dueDate}</span>
-            </span>
+          <div className="xs:h-[148px] lg:h-[200px] mb-4">
+            <img src="https://cq5as7pc73.ufs.sh/f/pHNnzIw3VjcgQhP8bAH1zD6Rg7Fh3sAdVwjO4BxbtPWk58iU"
+              alt="Banner for courses"
+              className="w-full h-full object-cover rounded-lg"
+            />
+          </div>
+          <div className="flex items-center gap-2">
+            <h3 className="font-semibold text-lg leading-tight">
+              {task.title}
+            </h3>
+            <Badge variant="secondary" className={`w-fit text-xs font-medium ${badgeColor}`}>
+              {task.category}
+            </Badge>
           </div>
 
+          <p className="text-sm text-muted-foreground leading-relaxed">
+            {task.description}
+          </p>
+
+          <div className="flex items-center gap-2 text-sm pt-2">
+            <Clock className="h-4 w-4 text-muted-foreground" />
+            <span>
+              Due Date:{" "}
+              <span className="text-foreground font-medium">
+                {task.dueDate}
+              </span>
+            </span>
+          </div>
         </CardContent>
       </Card>
-
     </Link>
   )
 }

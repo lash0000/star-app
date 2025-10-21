@@ -137,7 +137,7 @@ function LandingPage() {
 
         {/* Banner Section */}
         <div className="border xs:w-full lg:w-[1040px]">
-          <div className="xs:hidden lg:block relative bg-[#9B5DE0] dark:bg-gradient-to-t from-green-500 to-stone-900 w-full h-[480px] overflow-hidden">
+          <div className="xs:hidden lg:block relative bg-[#9B5DE0]  w-full h-[480px] overflow-hidden">
             <div
               className="absolute inset-0 bg-cover bg-center"
               style={{

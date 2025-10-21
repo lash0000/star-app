@@ -121,7 +121,7 @@ function DashboardPage() {
   }
 
   return (
-    <section id="dashboard-client">
+    <section id="dashboard-client" className="xs:p-4 lg:p-8">
       <div className="flex w-full justify-between flex-row gap-4">
         <div id="main-content" className="grid xs:grid-cols-1 lg:grid-cols-8 gap-8 place-items-end items-start w-full">
           <div id="announcements" className="lg:col-span-5 gap-4 flex flex-col w-full">
