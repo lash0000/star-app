@@ -2,9 +2,6 @@ import { defineConfig } from 'vite'
 import react from '@vitejs/plugin-react'
 import path from "path"
 import tailwindcss from '@tailwindcss/vite'
-import { ViteSitemap } from 'vite-plugin-sitemap';
-import { createHtmlPlugin } from 'vite-plugin-html';
-import { ViteSSG } from 'vite-ssg';
 
 // https://vite.dev/config/
 export default defineConfig({
