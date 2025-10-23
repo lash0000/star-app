@@ -78,7 +78,7 @@ function Layout() {
   return (
     <>
       <TitleUpdater />
-      <main className="font-medium selection:bg-primary selection:text-white dark:selection:bg-white dark:selection:text-black">
+      <main className="font-medium selection:bg-primary selection:text-white dark:selection:bg-white dark:selection:text-black font-geist">
         <Routes>
           {LandingRoutes()}
           {UserRoutes()}

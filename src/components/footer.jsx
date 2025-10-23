@@ -15,7 +15,7 @@ import { Link } from "react-router-dom"
 
 export default function Footer() {
   return (
-    <footer className="bg-muted dark:bg-muted/20 border-t">
+    <footer className="bg-background border-t">
       <div className="lg:container lg:mx-auto xs:px-6 lg:px-16 py-12">
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 lg:gap-12">
           {/* Resources */}

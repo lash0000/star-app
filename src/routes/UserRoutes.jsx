@@ -15,6 +15,7 @@ import SidebarLayout from '@/components/layout/SidebarLayout';
 import Checklist from '@/modules/dashboard/Checklist';
 import CoursePage from '@/modules/dashboard/CoursePage';
 import Courses from '@/modules/dashboard/Courses';
+import CourseUnitPage from '@/modules/dashboard/CourseUnitPage';
 import DashboardPage from '@/modules/dashboard/DashboardPage';
 import React from 'react'
 import { Route } from 'react-router-dom';
@@ -26,6 +27,7 @@ const UserRoutes = () => [
     <Route path="/dashboard/courses" element={<Courses />} />
     <Route path="/dashboard/course/:id" element={<CoursePage />} />
   </Route>,
+  <Route path="/course/unit/:id" element={<CourseUnitPage />} />,
 ]
 
 export default UserRoutes;

@@ -37,6 +37,7 @@ import { Outlet } from "react-router-dom";
 import { Menu, User, LogOut, Moon, Sun } from "lucide-react";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar"
 import { useTheme } from "../ThemeProvider"
+import Footer from "../footer"
 
 function SidebarLayout() {
   const { theme, toggleTheme } = useTheme();
@@ -72,7 +73,7 @@ function SidebarLayout() {
                 <AvatarFallback>CN</AvatarFallback>
               </Avatar>
             </PopoverTrigger>
-            <PopoverContent align="end" className="md:w-full p-0">
+            <PopoverContent align="end" className="md:w-full font-geist p-0">
               <div className="flex flex-col">
                 {/* Email Header */}
                 <div className="px-8 py-3 flex items-center justify-center border-b">
@@ -128,6 +129,7 @@ function SidebarLayout() {
         <div className="flex flex-1 flex-col gap-4 bg-slate-100 dark:bg-gray-900">
           <Outlet />
         </div>
+        <Footer />
       </SidebarInset>
     </SidebarProvider>
   )
