@@ -28,11 +28,14 @@ import {
   HoverCardTrigger,
 } from "@/components/ui/hover-card"
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar"
+import { useNavigate } from "react-router-dom"
+import { Verified } from "lucide-react";
 
 function CoursePage() {
   const [courseOverview, setCourseOverview] = useState(false);
   const [openUnits, setOpenUnits] = useState({});
   const [isHoverCardMobile, setIsHoverCardMobile] = useState(false);
+  const navigate = useNavigate();
 
   const handleToggle = (id) => {
     setOpenUnits((prev) => ({
@@ -165,7 +168,9 @@ function CoursePage() {
                   </p>
                 </div>
                 <div className="xs:hidden lg:block">
-                  <Button className="bg-blue-600 dark:bg-blue-600 hover:bg-blue-800 dark:text-white">
+                  <Button
+                    onClick={() => navigate("/course/unit/1234567890")}
+                    className="bg-blue-600 dark:bg-blue-600 hover:bg-blue-800 dark:text-white">
                     Start learning
                   </Button>
                 </div>
@@ -318,6 +323,10 @@ function CoursePage() {
                                 <p className="text-muted-foreground text-sm">
                                   {badge.description}
                                 </p>
+                                <div className="flex items-center text-blue-500 gap-2">
+                                  <Verified className="size-4" />
+                                  <span className="text-sm font-medium">Verified by Philproperties</span>
+                                </div>
                               </HoverCardContent>
                             </HoverCard>
                           ) : (

@@ -22,7 +22,6 @@ import {
 } from "@/components/ui/breadcrumb"
 import { Separator } from "@/components/ui/separator"
 import { Button } from "@/components/ui/button"
-
 import {
   SidebarInset,
   SidebarProvider,
@@ -38,9 +37,12 @@ import { Menu, User, LogOut, Moon, Sun } from "lucide-react";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar"
 import { useTheme } from "../ThemeProvider"
 import Footer from "../footer"
+import { useNavigate } from "react-router-dom"
+import { Toaster } from "@/components/ui/sonner"
 
 function SidebarLayout() {
   const { theme, toggleTheme } = useTheme();
+  const navigate = useNavigate();
 
   return (
     <SidebarProvider>
@@ -99,7 +101,11 @@ function SidebarLayout() {
                   <p className="text-sm text-muted-foreground font-medium">Learner</p>
                 </div>
                 <div className="border-t">
-                  <Button variant="ghost" className="w-full justify-start gap-3 px-4 py-3 rounded-none">
+                  <Button
+                    variant="ghost"
+                    className="w-full justify-start gap-3 px-4 py-3 rounded-none"
+                    onClick={() => navigate('/dashboard/profile/1234567890')}
+                  >
                     <User className="size-4" />
                     <span className="text-sm font-medium">Profile</span>
                   </Button>
@@ -128,6 +134,7 @@ function SidebarLayout() {
         </div>
         <div className="flex flex-1 flex-col gap-4 bg-slate-100 dark:bg-gray-900">
           <Outlet />
+          <Toaster position="top-center" />
         </div>
         <Footer />
       </SidebarInset>

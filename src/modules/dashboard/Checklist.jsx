@@ -429,7 +429,7 @@ export default function Checklist() {
                       <span className="sr-only">Filter</span>
                     </Button>
                   </DropdownMenuTrigger>
-                  <DropdownMenuContent className="w-64" align="end">
+                  <DropdownMenuContent className="font-geist w-64" align="end">
                     <DropdownMenuLabel className="font-bold">Filtering</DropdownMenuLabel>
                     <DropdownMenuGroup>
                       <DropdownMenuItem>
@@ -491,7 +491,7 @@ export default function Checklist() {
         {
           typeof window !== "undefined" && window.innerWidth < 768 ? (
             <Drawer open={openCommand} onOpenChange={setOpenCommand}>
-              <DrawerContent className="p-4">
+              <DrawerContent className="p-4 font-geist">
                 <DrawerHeader className="pb-4">
                   <DrawerTitle>
                     Search for onboarding
@@ -549,7 +549,7 @@ export default function Checklist() {
             <CommandDialog
               open={openCommand}
               onOpenChange={setOpenCommand}
-              className="border-4 border-slate-300 dark:border-blue-950"
+              className="font-geist border-4 border-slate-300 dark:border-blue-950"
             >
               <CommandInput placeholder="Search for onboarding..." />
               <CommandList>

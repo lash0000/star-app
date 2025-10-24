@@ -319,7 +319,7 @@ export default function Courses() {
                       <span className="sr-only">Filter</span>
                     </Button>
                   </DropdownMenuTrigger>
-                  <DropdownMenuContent className="w-64" align="end">
+                  <DropdownMenuContent className="font-geist w-64" align="end">
                     <DropdownMenuLabel className="font-bold">Filtering</DropdownMenuLabel>
                     <DropdownMenuGroup>
                       <DropdownMenuItem>
@@ -381,7 +381,7 @@ export default function Courses() {
         {
           typeof window !== "undefined" && window.innerWidth < 768 ? (
             <Drawer open={openCommand} onOpenChange={setOpenCommand}>
-              <DrawerContent className="p-4">
+              <DrawerContent className="p-4 font-geist">
                 <DrawerHeader className="pb-4">
                   <DrawerTitle>
                     Search for available courses
@@ -439,7 +439,7 @@ export default function Courses() {
             <CommandDialog
               open={openCommand}
               onOpenChange={setOpenCommand}
-              className="border-4 border-slate-300 dark:border-blue-950"
+              className="border-4 border-slate-300 dark:border-blue-950 font-geist"
             >
               <CommandInput placeholder="Search for onboarding..." />
               <CommandList>

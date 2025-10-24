@@ -1,176 +1,244 @@
-import { useState, useRef } from "react"
+import { useState, useRef, useEffect } from "react"
+import { useOutletContext } from "react-router-dom"
 import { getStroke } from "perfect-freehand"
-import { Button } from "@/components/ui/button"
-import { Separator } from "@/components/ui/separator"
-import { Pen, X, List, FileText } from "lucide-react"
-import {
-  Tabs,
-  TabsContent,
-  TabsList,
-  TabsTrigger,
-} from "@/components/ui/tabs"
 
-// Utility to convert stroke points into an SVG path
 function getSvgPathFromStroke(stroke) {
   if (!stroke.length) return ""
-  const d = stroke.reduce(
-    (acc, [x0, y0], i, arr) => {
-      const [x1, y1] = arr[(i + 1) % arr.length]
-      acc.push(`${i === 0 ? "M" : "L"} ${x0.toFixed(2)} ${y0.toFixed(2)}`)
-      return acc
-    },
-    []
-  )
+  const d = stroke.map(([x, y], i) => `${i === 0 ? "M" : "L"} ${x.toFixed(2)} ${y.toFixed(2)}`)
   return d.join(" ") + "Z"
 }
 
-export default function CourseUnitPage() {
-  const [isDrawing, setIsDrawing] = useState(false)
-  const [lines, setLines] = useState([])
-  const svgRef = useRef(null)
+const staticData = [
+  {
+    id: "slide-1",
+    fragments: [
+      {
+        type: "title-case",
+        title: "1.0.1 – Lesson Takeaways",
+        subtitle: "Understanding Course Value",
+      },
+      {
+        type: "flexbox",
+        gallery: "https://cq5as7pc73.ufs.sh/f/pHNnzIw3VjcgXNIPGdi7gNzt8EQrq5e2SbJv0d4mFTCGkRhP",
+        description: [
+          "Lorem ipsum dolor sit amet consectetur adipisicing elit. Reprehenderit totam saepe sequi vel obcaecati inventore illum.",
+          "Eveniet commodi recusandae officia quae accusantium dolorem ipsa?",
+        ],
+      },
+    ],
+  },
+  {
+    id: "slide-2",
+    fragments: [
+      {
+        type: "title-case",
+        title: "2.0 – Why Take This Course?",
+        subtitle: "Key Motivations and Benefits",
+      },
+      {
+        type: "paragraphs",
+        paragraphs: [
+          "This course is designed to help learners develop deeper understanding of sales consultation through practical examples.",
+          "You’ll explore core concepts and real-world cases that challenge your strategic thinking.",
+        ],
+      },
+    ],
+  },
+  {
+    id: "slide-3",
+    fragments: [
+      {
+        type: "title-case",
+        title: "3.0 – Summary & Reflection",
+        subtitle: "Bringing It All Together",
+      },
+      {
+        type: "flexbox",
+        gallery: "https://cq5as7pc73.ufs.sh/f/pHNnzIw3VjcgXNIPGdi7gNzt8EQrq5e2SbJv0d4mFTCGkRhP",
+        description: [
+          "Reflect on what you’ve learned and how it applies to your personal and professional development.",
+          "Use this space to summarize key takeaways.",
+        ],
+      },
+    ],
+  },
+]
 
-  function handlePointerDown(e) {
-    if (!isDrawing) return
-    const point = [e.nativeEvent.offsetX, e.nativeEvent.offsetY]
-    setLines([...lines, [point]])
+export default function CourseUnitPage() {
+  const { isDrawing, clearTrigger } = useOutletContext() || {}
+  const scrollRef = useRef(null)
+  const sectionsRef = useRef({})
+
+  const [linesBySection, setLinesBySection] = useState({})
+  const [activeSection, setActiveSection] = useState(null)
+  const [cursor, setCursor] = useState({ x: 0, y: 0, visible: false })
+
+  useEffect(() => setLinesBySection({}), [clearTrigger])
+
+  useEffect(() => {
+    document.body.style.overflow = "hidden"
+    return () => (document.body.style.overflow = "")
+  }, [])
+
+  function getRelativePoint(e, sectionEl) {
+    const bounds = sectionEl.getBoundingClientRect()
+    const x = e.clientX - bounds.left
+    const y = e.clientY - bounds.top
+    return [x, y]
   }
 
-  function handlePointerMove(e) {
+  function handlePointerDown(e, sectionId) {
     if (!isDrawing) return
-    if (e.buttons !== 1) return
+    setActiveSection(sectionId)
+    const sectionEl = sectionsRef.current[sectionId]
+    const point = getRelativePoint(e, sectionEl)
+    setLinesBySection(prev => ({
+      ...prev,
+      [sectionId]: [...(prev[sectionId] || []), [point]],
+    }))
+  }
 
-    const point = [e.nativeEvent.offsetX, e.nativeEvent.offsetY]
-    setLines((prev) => {
-      const lastLine = prev[prev.length - 1]
-      const newLines = [...prev.slice(0, -1), [...lastLine, point]]
-      return newLines
+  function handlePointerMove(e, sectionId) {
+    const sectionEl = sectionsRef.current[sectionId]
+    if (!sectionEl) return
+
+    const [x, y] = getRelativePoint(e, sectionEl)
+    setCursor({ x, y, visible: isDrawing })
+
+    if (!isDrawing || e.buttons !== 1) return
+
+    setLinesBySection(prev => {
+      const lines = prev[sectionId] || []
+      const lastLine = lines[lines.length - 1]
+      const newLines = [...lines.slice(0, -1), [...lastLine, [x, y]]]
+      return { ...prev, [sectionId]: newLines }
     })
   }
 
   function handlePointerUp() {
-    // Stop drawing when released
+    setCursor(c => ({ ...c, visible: false }))
+    setActiveSection(null)
   }
 
-  function clearCanvas() {
-    setLines([])
+  const strokeSettings = {
+    size: 4,
+    thinning: 0.6,
+    smoothing: 0.7,
+    streamline: 0.5,
+    simulatePressure: true,
+  }
+
+  // Fragment renderer: dynamically picks component by type
+  function renderFragment(fragment, index) {
+    switch (fragment.type) {
+      case "title-case":
+        return (
+          <div
+            key={index}
+            id="title-case"
+            className="flex flex-col space-y-1 py-2 border-b"
+          >
+            <h1 id="title" className="text-2xl font-bold tracking-tight text-primary">
+              {fragment.title}
+            </h1>
+            <h2 id="subtitle" className="text-base text-muted-foreground">
+              {fragment.subtitle}
+            </h2>
+          </div>
+        )
+
+      case "paragraphs":
+        return (
+          <div
+            key={index}
+            id="paragraphs"
+            className="space-y-2 text-sm leading-relaxed"
+          >
+            {fragment.paragraphs.map((p, i) => (
+              <p key={i}>{p}</p>
+            ))}
+          </div>
+        )
+
+      case "flexbox":
+        return (
+          <div
+            key={index}
+            id="flexbox"
+            className="flex flex-col md:flex-row items-start justify-between gap-6 py-4"
+          >
+            <div id="gallery" className="w-full md:w-1/2">
+              <img
+                src={fragment.gallery}
+                alt=""
+                className="object-cover rounded-md shadow"
+              />
+            </div>
+            <div
+              id="description"
+              className="max-w-md break-words space-y-3 text-sm leading-relaxed"
+            >
+              {fragment.description.map((text, i) => (
+                <p key={i}>{text}</p>
+              ))}
+            </div>
+          </div>
+        )
+
+      default:
+        return null
+    }
   }
 
   return (
-    <div className="">
-      <div className="w-full border-b py-4 px-8">
-        <div className="flex items-center justify-between w-full">
-          <div className="flex items-center gap-4">
-            <div className="w-40">
-              <img
-                src="/philpro-white.png"
-                alt=""
-                className="w-full h-full object-cover"
-              />
-            </div>
-            <div className="h-[40px]">
-              <Separator orientation="vertical" />
-            </div>
-            <div>Becoming a Sales Consultant</div>
-          </div>
-
-          <div className="flex gap-2">
-            {/* Toggle drawing mode */}
-            <Button
-              size="icon"
-              variant={isDrawing ? "default" : "ghost"}
-              onClick={() => setIsDrawing(!isDrawing)}
-            >
-              <Pen />
-            </Button>
-
-            {/* Clear strokes */}
-            <Button size="icon" onClick={clearCanvas} title="Clear drawings">
-              <X />
-            </Button>
-          </div>
-        </div>
-      </div>
-
-      <div className="flex items-start ">
-        <div className="w-1/3 h-screen border-r">
-          <Tabs defaultValue="tab-1" className="items-start">
-            <TabsList className="w-full h-auto gap-2 rounded-none border-b bg-transparent px-0 py-2 text-foreground justify-start">
-              <TabsTrigger
-                value="tab-1"
-                className="relative after:absolute after:inset-x-0 after:bottom-0 after:-mb-2 after:h-0.5 hover:bg-accent hover:text-foreground data-[state=active]:bg-transparent data-[state=active]:shadow-none data-[state=active]:after:bg-primary data-[state=active]:hover:bg-accent w-full"
-              >
-                <List className="size-4 mr-2" /> Course Outline
-              </TabsTrigger>
-              <TabsTrigger
-                value="tab-2"
-                className="relative after:absolute after:inset-x-0 after:bottom-0 after:-mb-2 after:h-0.5 hover:bg-accent hover:text-foreground data-[state=active]:bg-transparent data-[state=active]:shadow-none data-[state=active]:after:bg-primary data-[state=active]:hover:bg-accent w-full"
-              >
-                <FileText className="size-4 mr-2" /> Resources
-              </TabsTrigger>
-            </TabsList>
-            <TabsContent value="tab-1">
-              <p className="p-4 text-center text-xs text-muted-foreground">
-                Content for Tab 1
-              </p>
-            </TabsContent>
-            <TabsContent value="tab-2">
-              <p className="p-4 text-center text-xs text-muted-foreground">
-                Content for Tab 2
-              </p>
-            </TabsContent>
-
-          </Tabs>
-
-        </div>
-        {/* DRAWING AREA */}
-        <div
-          className={`relative w-4/5 h-screen bg-muted p-2 ${isDrawing ? "cursor-crosshair" : ""}`}
-          onPointerDown={handlePointerDown}
-          onPointerMove={handlePointerMove}
-          onPointerUp={handlePointerUp}
-        >
-          <svg
-            ref={svgRef}
-            className="absolute top-0 left-0 w-full h-full"
-            xmlns="http://www.w3.org/2000/svg"
+    <div className="relative w-full h-full overflow-hidden">
+      <div
+        ref={scrollRef}
+        className="absolute inset-0 overflow-y-auto p-4 bg-muted space-y-6"
+      >
+        {staticData.map(section => (
+          <div
+            key={section.id}
+            id={section.id}
+            ref={el => (sectionsRef.current[section.id] = el)}
+            className="lg:container lg:mx-auto lg:max-w-5xl relative border rounded-lg p-6 bg-background select-none shadow-sm space-y-4"
+            onPointerDown={e => handlePointerDown(e, section.id)}
+            onPointerMove={e => handlePointerMove(e, section.id)}
+            onPointerUp={handlePointerUp}
+            onPointerEnter={() => setActiveSection(section.id)}
+            onPointerLeave={() => {
+              if (activeSection === section.id) setActiveSection(null)
+            }}
           >
-            {lines.map((points, i) => {
-              const stroke = getStroke(points, {
-                size: 4, // default stroke thickness
-                thinning: 0.5,
-                smoothing: 0.8,
-                streamline: 0.5,
-              })
-              const pathData = getSvgPathFromStroke(stroke)
-              return <path key={i} d={pathData} fill="black" />
-            })}
-          </svg>
-          {/* 
-             Main content starts
+            {/* Render dynamic fragments */}
+            {section.fragments.map((frag, i) => renderFragment(frag, i))}
 
-             Dynamic Blocks available: 
-
-             1. <banner> - Requires Banner and Banner Title
-             2. <title> - Only div
-             3. <header> - Requires
-          */}
-          <div className="bg-background p-4 rounded-lg border space-y-4">
-            <div id="banner" className="bg-primary text-white w-full h-[100px] flex items-center justify-start px-6">
-              <h1 id="banner_title" className="text-2xl tracking-tighter font-bold">1.0.1 - Lesson Takeaways</h1>
-            </div>
-            <div id="dynamic-blocks" className="p-4">
-              <div id="title" className="leading-tighter text-2xl font-medium tracking-tighter">
-                1.0.1 Why Take This Course?
-              </div>
-              <div id="flexbox"></div>
-            </div>
-
+            {/* Local SVG for this section */}
+            <svg
+              className={`absolute inset-0 w-full h-full pointer-events-none z-50 ${isDrawing ? "cursor-crosshair" : "cursor-default"
+                }`}
+            >
+              {linesBySection[section.id]?.map((line, i) => {
+                const stroke = getStroke(line, strokeSettings)
+                const path = getSvgPathFromStroke(stroke)
+                return (
+                  <path
+                    key={i}
+                    d={path}
+                    fill="black"
+                    stroke="none"
+                    strokeLinejoin="round"
+                    strokeLinecap="round"
+                  />
+                )
+              })}
+              {cursor.visible && activeSection === section.id && (
+                <circle cx={cursor.x} cy={cursor.y} r={3} fill="black" opacity="0.8" />
+              )}
+            </svg>
           </div>
-        </div>
-
+        ))}
       </div>
-
-
     </div>
   )
 }
