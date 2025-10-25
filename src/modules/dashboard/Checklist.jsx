@@ -7,34 +7,27 @@ import {
   Filter,
   Clock,
   ArrowRight,
-  CornerDownLeft
+  CornerDownLeft,
 } from "lucide-react"
-import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/rounded-tabs"
+import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs"
 import { Badge } from "@/components/ui/badge"
 import { Input } from "@/components/ui/input"
 import { Button } from "@/components/ui/button"
 import { Card, CardContent } from "@/components/ui/card"
 import {
-  Command,
   CommandDialog,
   CommandEmpty,
   CommandGroup,
   CommandInput,
   CommandItem,
   CommandList,
-  CommandSeparator,
-  CommandShortcut,
 } from "@/components/ui/command"
-import { useIsMobile } from "@/hooks/use-mobile"
 import {
   Drawer,
-  DrawerClose,
   DrawerContent,
   DrawerDescription,
-  DrawerFooter,
   DrawerHeader,
   DrawerTitle,
-  DrawerTrigger,
 } from "@/components/ui/drawer"
 import { ScrollArea } from "@/components/ui/scroll-area"
 import {
@@ -51,15 +44,12 @@ import {
   DropdownMenuGroup,
   DropdownMenuItem,
   DropdownMenuLabel,
-  DropdownMenuPortal,
-  DropdownMenuSeparator,
   DropdownMenuShortcut,
-  DropdownMenuSub,
-  DropdownMenuSubContent,
-  DropdownMenuSubTrigger,
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu"
-import { Link } from "react-router-dom"
+import { FileUploadDialog } from "@/components/file-upload-dialog"
+import { NormalDialog } from "@/components/normal-dialog"
+import { ResponsiveDialog } from "@/components/checklist-responsive-dialog"
 
 const tasks = [
   {
@@ -71,6 +61,7 @@ const tasks = [
     categoryColor: "blue",
     dueDate: "Sep 19, 2025",
     status: "todo",
+    dialogType: "normal",
   },
   {
     id: "2",
@@ -81,6 +72,7 @@ const tasks = [
     categoryColor: "red",
     dueDate: "Sep 19, 2025",
     status: "todo",
+    dialogType: "upload",
   },
   {
     id: "3",
@@ -91,6 +83,7 @@ const tasks = [
     categoryColor: "green",
     dueDate: "Sep 19, 2025",
     status: "todo",
+    dialogType: "normal",
   },
   {
     id: "4",
@@ -101,6 +94,7 @@ const tasks = [
     categoryColor: "red",
     dueDate: "Sep 20, 2025",
     status: "pending",
+    dialogType: "upload",
   },
   {
     id: "5",
@@ -111,6 +105,7 @@ const tasks = [
     categoryColor: "green",
     dueDate: "Sep 21, 2025",
     status: "pending",
+    dialogType: "normal",
   },
   {
     id: "6",
@@ -121,6 +116,7 @@ const tasks = [
     categoryColor: "red",
     dueDate: "Sep 18, 2025",
     status: "completed",
+    dialogType: "normal",
   },
   {
     id: "7",
@@ -131,6 +127,7 @@ const tasks = [
     categoryColor: "yellow",
     dueDate: "Sep 25, 2025",
     status: "todo",
+    dialogType: "upload",
   },
   {
     id: "8",
@@ -141,6 +138,7 @@ const tasks = [
     categoryColor: "blue",
     dueDate: "Sep 22, 2025",
     status: "todo",
+    dialogType: "normal",
   },
   {
     id: "9",
@@ -151,120 +149,33 @@ const tasks = [
     categoryColor: "green",
     dueDate: "Sep 28, 2025",
     status: "pending",
+    dialogType: "upload",
   },
   {
     id: "10",
-    title: "Real Estate Documentation Workshop",
+    title: "Attend Sales Orientation",
     description:
-      "Learn proper documentation, record keeping, and filing of contracts to maintain compliance.",
-    category: "Mandatory Training",
-    categoryColor: "red",
-    dueDate: "Sep 24, 2025",
-    status: "pending",
+      "Join the virtual onboarding session to learn company policies, sales structure, and growth opportunities.",
+    category: "Checklist",
+    categoryColor: "blue",
+    dueDate: "Sep 22, 2025",
+    status: "todo",
+    dialogType: "normal",
   },
   {
     id: "11",
-    title: "Ethical Selling and Client Integrity",
+    title: "Digital Marketing Training",
     description:
-      "Understand ethical boundaries, transparency, and trust-building in every sales interaction.",
-    category: "Mandatory Training",
-    categoryColor: "red",
-    dueDate: "Sep 15, 2025",
-    status: "completed",
-  },
-  {
-    id: "12",
-    title: "Participate in Property Expo 2025",
-    description:
-      "Engage with potential investors and showcase Philproperties’ latest developments.",
-    category: "Event Participation",
-    categoryColor: "purple",
-    dueDate: "Sep 30, 2025",
-    status: "todo",
-  },
-  {
-    id: "13",
-    title: "Customer Feedback Review",
-    description:
-      "Analyze collected client feedback and suggest improvements for the consultation process.",
-    category: "Team Task",
-    categoryColor: "orange",
-    dueDate: "Sep 27, 2025",
-    status: "pending",
-  },
-  {
-    id: "14",
-    title: "Internal Audit Preparation",
-    description:
-      "Review compliance checklist and prepare documentation for the quarterly audit.",
-    category: "Administrative",
-    categoryColor: "teal",
-    dueDate: "Sep 17, 2025",
-    status: "completed",
-  },
-  {
-    id: "15",
-    title: "Community Outreach Planning",
-    description:
-      "Coordinate with marketing to organize community awareness programs for property buyers.",
-    category: "Team Collaboration",
-    categoryColor: "pink",
-    dueDate: "Sep 26, 2025",
-    status: "todo",
-  },
-  {
-    id: "16",
-    title: "New Agent Mentorship",
-    description:
-      "Assist new hires with their onboarding tasks and guide them through their first week.",
-    category: "Mentorship",
-    categoryColor: "cyan",
-    dueDate: "Sep 23, 2025",
-    status: "pending",
-  },
-  {
-    id: "17",
-    title: "Update CRM Database",
-    description:
-      "Ensure all client and lead data are accurate and up to date in the system.",
-    category: "Administrative",
-    categoryColor: "teal",
-    dueDate: "Sep 16, 2025",
-    status: "completed",
-  },
-  {
-    id: "18",
-    title: "Team Strategy Meeting",
-    description:
-      "Discuss next quarter goals, performance targets, and marketing campaigns.",
-    category: "Team Collaboration",
-    categoryColor: "pink",
-    dueDate: "Sep 29, 2025",
-    status: "pending",
-  },
-  {
-    id: "19",
-    title: "Leadership and Management Course",
-    description:
-      "Gain insights on motivating team members, performance monitoring, and leadership values.",
+      "Enhance your online presence through social media campaigns, SEO, and digital branding techniques.",
     category: "Supplemental Training",
     categoryColor: "green",
-    dueDate: "Sep 20, 2025",
-    status: "completed",
+    dueDate: "Sep 28, 2025",
+    status: "pending",
+    dialogType: "upload",
   },
-  {
-    id: "20",
-    title: "Weekly Performance Report",
-    description:
-      "Prepare and submit weekly performance metrics to the HR department.",
-    category: "Administrative",
-    categoryColor: "teal",
-    dueDate: "Sep 22, 2025",
-    status: "todo",
-  },
-];
+]
 
-const ITEMS_PER_PAGE = 5;
+const ITEMS_PER_PAGE = 5
 
 export default function Checklist() {
   const [searchQuery, setSearchQuery] = useState("")
@@ -298,8 +209,7 @@ export default function Checklist() {
   useEffect(() => {
     if (typeof navigator !== "undefined") {
       const ua = navigator.userAgent.toLowerCase()
-      const isSafariDetected =
-        ua.includes("safari") && !ua.includes("chrome") && !ua.includes("android")
+      const isSafariDetected = ua.includes("safari") && !ua.includes("chrome") && !ua.includes("android")
       setIsSafari(isSafariDetected)
     }
 
@@ -313,9 +223,7 @@ export default function Checklist() {
     return () => document.removeEventListener("keydown", down)
   }, [])
 
-  const getTasksByStatus = (status) => {
-    return tasks.filter((task) => task.status === status)
-  }
+  const getTasksByStatus = (status) => tasks.filter((task) => task.status === status)
 
   const filterTasks = (taskList) => {
     if (!searchQuery) return taskList
@@ -336,179 +244,181 @@ export default function Checklist() {
   const completedPaginated = getPaginatedTasks(completedTasks)
 
   return (
-    <section id="onboarding-checklist" className="w-full lg:max-w-7xl lg:mx-auto xs:p-4 lg:p-8">
-      <div className="flex flex-col gap-2">
-        <h1 className="text-2xl font-bold tracking-tighter text-primary">
-          Onboarding Checklist
-        </h1>
-        <Tabs value={activeTab} onValueChange={setActiveTab}>
-          <div className="flex flex-col sm:flex-row sm:items-center justify-between">
-            <TabsList className="xs:fixed xs:bottom-0 xs:left-1/2 xs:-translate-x-1/2 md:relative md:bottom-[unset] md:left-[unset] md:-translate-x-[unset] gap-1 bg-background border-t xs:rounded-none md:rounded-full xs:w-full md:w-[unset]">
-              <TabsTrigger
-                value="todo"
-                className="xs:flex xs:flex-col md:flex-row group border border-slate-50/10 dark:border-gray-900/10 rounded-full md:dark:data-[state=active]:border-blue-500 md:dark:data-[state=active]:text-blue-500 md:dark:data-[state=active]:bg-blue-900/30"
-              >
-                <BookOpen
-                  className="md:-ms-0.5 md:me-1.5 opacity-60"
-                  size={window.innerWidth < 768 ? 24 : 16}
-                  aria-hidden="true"
-                />
-                To-do
-                <Badge
-                  className="xs:hidden md:block bg-primary dark:bg-blue-500 text-primary-foreground ms-2 min-w-5 rounded-full transition-opacity group-data-[state=inactive]:opacity-50 dark:group-data-[state=inactive]:bg-white"
-                  variant="secondary"
+    <>
+      <section id="onboarding-checklist" className="w-full lg:max-w-7xl lg:mx-auto xs:p-4 lg:p-8">
+        <div className="flex flex-col gap-2">
+          <h1 className="text-2xl font-bold tracking-tighter text-primary">
+            Onboarding Checklist
+          </h1>
+          <Tabs value={activeTab} onValueChange={setActiveTab}>
+            <div className="flex flex-col sm:flex-row sm:items-center justify-between">
+              <TabsList className="xs:fixed xs:bottom-0 xs:left-1/2 xs:-translate-x-1/2 md:relative md:bottom-[unset] md:left-[unset] md:-translate-x-[unset] gap-1 bg-background border-t xs:rounded-none md:rounded-full xs:w-full md:w-[unset]">
+                <TabsTrigger
+                  value="todo"
+                  className="xs:flex xs:flex-col md:flex-row group border border-slate-50/10 dark:border-gray-900/10 rounded-full md:dark:data-[state=active]:border-blue-500 md:dark:data-[state=active]:text-blue-500 md:dark:data-[state=active]:bg-blue-900/30"
                 >
-                  {todoTasks.length}
-                </Badge>
-              </TabsTrigger>
-              <TabsTrigger
-                value="pending"
-                className="xs:flex xs:flex-col md:flex-row group border border-slate-50/10 dark:border-gray-900/10 rounded-full md:dark:data-[state=active]:border-blue-500 md:dark:data-[state=active]:text-blue-500 md:dark:data-[state=active]:bg-blue-900/30"
-              >
-                <RefreshCw
-                  className="md:-ms-0.5 md:me-1.5 opacity-60"
-                  size={window.innerWidth < 768 ? 24 : 16}
-                  aria-hidden="true"
-                />
-                <span>Pending</span>
-                <Badge
-                  className="xs:hidden md:block bg-primary dark:bg-blue-500 text-primary-foreground ms-2 min-w-5 rounded-full transition-opacity group-data-[state=inactive]:opacity-50 dark:group-data-[state=inactive]:bg-white"
-                  variant="secondary"
-                >
-                  {pendingTasks.length}
-                </Badge>
-              </TabsTrigger>
-
-              <TabsTrigger
-                value="completed"
-                className="xs:flex xs:flex-col md:flex-row group border border-slate-50/10 dark:border-gray-900/10 rounded-full md:dark:data-[state=active]:border-blue-500 md:dark:data-[state=active]:text-blue-500 md:dark:data-[state=active]:bg-blue-900/30"
-              >
-                <CheckCheck
-                  className="md:-ms-0.5 md:me-1.5 opacity-60"
-                  size={window.innerWidth < 768 ? 24 : 16}
-                  aria-hidden="true"
-                />
-                <span>Completed</span>
-                <Badge
-                  className="xs:hidden md:block bg-primary dark:bg-blue-500 text-primary-foreground ms-2 min-w-5 rounded-full transition-opacity group-data-[state=inactive]:opacity-50 dark:group-data-[state=inactive]:bg-white"
-                  variant="secondary"
-                >
-                  {completedTasks.length}
-                </Badge>
-              </TabsTrigger>
-            </TabsList>
-            <div id="onboard-checklist" className="xs:mt-2 sm:mt-0">
-              <div className="flex items-center gap-2 w-full">
-                <div className="relative w-full lg:w-80">
-                  <button
-                    onClick={() => setOpenCommand(true)}
-                    className="h-10 w-full rounded-lg border border-input bg-background px-3 py-2 text-sm text-muted-foreground flex items-center justify-between hover:bg-accent transition-colors"
+                  <BookOpen
+                    className="md:-ms-0.5 md:me-1.5 opacity-60"
+                    size={typeof window !== "undefined" && window.innerWidth < 768 ? 24 : 16}
+                    aria-hidden="true"
+                  />
+                  To-do
+                  <Badge
+                    className="xs:hidden md:block bg-primary dark:bg-blue-500 text-primary-foreground ms-2 min-w-5 rounded-full transition-opacity group-data-[state=inactive]:opacity-50 dark:group-data-[state=inactive]:bg-white"
+                    variant="secondary"
                   >
-                    <span className="flex items-center gap-2">
-                      <Search className="size-4" />
-                      Search
-                    </span>
-                    <div className="xs:hidden lg:block">
-                      <div className="flex gap-2">
-                        <kbd className="pointer-events-none inline-flex h-5 select-none items-center gap-1 rounded border bg-muted px-1.5 font-mono text-[10px] font-medium text-muted-foreground opacity-100">
-                          <span className="text-xs">
-                            {isSafari ? "⌘" : "Ctrl"}
-                          </span>
-                        </kbd>
-                        <kbd className="pointer-events-none inline-flex h-5 select-none items-center gap-1 rounded border bg-muted px-1.5 font-mono text-[10px] font-medium text-muted-foreground opacity-100">
-                          <span className="text-xs">K</span>
-                        </kbd>
+                    {todoTasks.length}
+                  </Badge>
+                </TabsTrigger>
+
+                <TabsTrigger
+                  value="pending"
+                  className="xs:flex xs:flex-col md:flex-row group border border-slate-50/10 dark:border-gray-900/10 rounded-full md:dark:data-[state=active]:border-blue-500 md:dark:data-[state=active]:text-blue-500 md:dark:data-[state=active]:bg-blue-900/30"
+                >
+                  <RefreshCw
+                    className="md:-ms-0.5 md:me-1.5 opacity-60"
+                    size={typeof window !== "undefined" && window.innerWidth < 768 ? 24 : 16}
+                    aria-hidden="true"
+                  />
+                  <span>Pending</span>
+                  <Badge
+                    className="xs:hidden md:block bg-primary dark:bg-blue-500 text-primary-foreground ms-2 min-w-5 rounded-full transition-opacity group-data-[state=inactive]:opacity-50 dark:group-data-[state=inactive]:bg-white"
+                    variant="secondary"
+                  >
+                    {pendingTasks.length}
+                  </Badge>
+                </TabsTrigger>
+
+                <TabsTrigger
+                  value="completed"
+                  className="xs:flex xs:flex-col md:flex-row group border border-slate-50/10 dark:border-gray-900/10 rounded-full md:dark:data-[state=active]:border-blue-500 md:dark:data-[state=active]:text-blue-500 md:dark:data-[state=active]:bg-blue-900/30"
+                >
+                  <CheckCheck
+                    className="md:-ms-0.5 md:me-1.5 opacity-60"
+                    size={typeof window !== "undefined" && window.innerWidth < 768 ? 24 : 16}
+                    aria-hidden="true"
+                  />
+                  <span>Completed</span>
+                  <Badge
+                    className="xs:hidden md:block bg-primary dark:bg-blue-500 text-primary-foreground ms-2 min-w-5 rounded-full transition-opacity group-data-[state=inactive]:opacity-50 dark:group-data-[state=inactive]:bg-white"
+                    variant="secondary"
+                  >
+                    {completedTasks.length}
+                  </Badge>
+                </TabsTrigger>
+              </TabsList>
+
+              {/* 🔍 Search & Filter section */}
+              <div id="onboard-checklist" className="xs:mt-2 sm:mt-0">
+                <div className="flex items-center gap-2 w-full">
+                  <div className="relative w-full lg:w-80">
+                    <button
+                      onClick={() => setOpenCommand(true)}
+                      className="h-10 w-full rounded-lg border border-input bg-background px-3 py-2 text-sm text-muted-foreground flex items-center justify-between hover:bg-accent transition-colors"
+                    >
+                      <span className="flex items-center gap-2">
+                        <Search className="size-4" />
+                        Search
+                      </span>
+                      <div className="xs:hidden lg:block">
+                        <div className="flex gap-2">
+                          <kbd className="pointer-events-none inline-flex h-5 select-none items-center gap-1 rounded border bg-muted px-1.5 font-mono text-[10px] font-medium text-muted-foreground opacity-100">
+                            <span className="text-xs">
+                              {isSafari ? "⌘" : "Ctrl"}
+                            </span>
+                          </kbd>
+                          <kbd className="pointer-events-none inline-flex h-5 select-none items-center gap-1 rounded border bg-muted px-1.5 font-mono text-[10px] font-medium text-muted-foreground opacity-100">
+                            <span className="text-xs">K</span>
+                          </kbd>
+                        </div>
                       </div>
-                    </div>
-                  </button>
+                    </button>
+                  </div>
+
+                  <DropdownMenu>
+                    <DropdownMenuTrigger asChild>
+                      <Button variant="outline" size="icon" className="shrink-0">
+                        <Filter className="size-4" />
+                        <span className="sr-only">Filter</span>
+                      </Button>
+                    </DropdownMenuTrigger>
+                    <DropdownMenuContent className="font-geist w-64" align="end">
+                      <DropdownMenuLabel className="font-bold">Filtering</DropdownMenuLabel>
+                      <DropdownMenuGroup>
+                        <DropdownMenuItem>
+                          This week
+                          <DropdownMenuShortcut>⇧</DropdownMenuShortcut>
+                        </DropdownMenuItem>
+                        <DropdownMenuItem>
+                          Last week
+                          <DropdownMenuShortcut>⇧</DropdownMenuShortcut>
+                        </DropdownMenuItem>
+                        <DropdownMenuItem>
+                          Next month
+                          <DropdownMenuShortcut>⇧</DropdownMenuShortcut>
+                        </DropdownMenuItem>
+                      </DropdownMenuGroup>
+                    </DropdownMenuContent>
+                  </DropdownMenu>
                 </div>
-                <DropdownMenu>
-                  <DropdownMenuTrigger asChild>
-                    <Button variant="outline" size="icon" className="shrink-0">
-                      <Filter className="size-4" />
-                      <span className="sr-only">Filter</span>
-                    </Button>
-                  </DropdownMenuTrigger>
-                  <DropdownMenuContent className="font-geist w-64" align="end">
-                    <DropdownMenuLabel className="font-bold">Filtering</DropdownMenuLabel>
-                    <DropdownMenuGroup>
-                      <DropdownMenuItem>
-                        This week
-                        <DropdownMenuShortcut>⇧</DropdownMenuShortcut>
-                      </DropdownMenuItem>
-                      <DropdownMenuItem>
-                        Last week
-                        <DropdownMenuShortcut>⇧</DropdownMenuShortcut>
-                      </DropdownMenuItem>
-                      <DropdownMenuItem>
-                        Next month
-                        <DropdownMenuShortcut>⇧</DropdownMenuShortcut>
-                      </DropdownMenuItem>
-                    </DropdownMenuGroup>
-                    {/*<DropdownMenuSeparator />*/}
-                  </DropdownMenuContent>
-                </DropdownMenu>
               </div>
             </div>
-          </div>
-          <TabsContent value="todo" className="mt-6 mb-20">
-            <TaskGrid tasks={todoPaginated.items} />
-            {todoPaginated.totalPages > 1 && (
-              <div className="mt-8 flex justify-center">
-                <PaginationComponent
-                  currentPage={pagination.todo}
-                  totalPages={todoPaginated.totalPages}
-                  onPageChange={handlePageChange}
-                />
-              </div>
-            )}
-          </TabsContent>
-          <TabsContent value="pending" className="mt-6 mb-20">
-            <TaskGrid tasks={pendingPaginated.items} />
-            {pendingPaginated.totalPages > 1 && (
-              <div className="mt-8 flex justify-center">
-                <PaginationComponent
-                  currentPage={pagination.pending}
-                  totalPages={pendingPaginated.totalPages}
-                  onPageChange={handlePageChange}
-                />
-              </div>
-            )}
-          </TabsContent>
-          <TabsContent value="completed" className="mt-6 mb-20">
-            <TaskGrid tasks={completedPaginated.items} />
-            {completedPaginated.totalPages > 1 && (
-              <div className="mt-8 flex justify-center">
-                <PaginationComponent
-                  currentPage={pagination.completed}
-                  totalPages={completedPaginated.totalPages}
-                  onPageChange={handlePageChange}
-                />
-              </div>
-            )}
-          </TabsContent>
-        </Tabs>
-        {
-          typeof window !== "undefined" && window.innerWidth < 768 ? (
+
+            <TabsContent value="todo" className="mt-6 mb-20">
+              <TaskGrid tasks={todoPaginated.items} />
+              {todoPaginated.totalPages > 1 && (
+                <div className="mt-8 flex justify-center">
+                  <PaginationComponent
+                    currentPage={pagination.todo}
+                    totalPages={todoPaginated.totalPages}
+                    onPageChange={handlePageChange}
+                  />
+                </div>
+              )}
+            </TabsContent>
+
+            <TabsContent value="pending" className="mt-6 mb-20">
+              <TaskGrid tasks={pendingPaginated.items} />
+              {pendingPaginated.totalPages > 1 && (
+                <div className="mt-8 flex justify-center">
+                  <PaginationComponent
+                    currentPage={pagination.pending}
+                    totalPages={pendingPaginated.totalPages}
+                    onPageChange={handlePageChange}
+                  />
+                </div>
+              )}
+            </TabsContent>
+
+            <TabsContent value="completed" className="mt-6 mb-20">
+              <TaskGrid tasks={completedPaginated.items} />
+              {completedPaginated.totalPages > 1 && (
+                <div className="mt-8 flex justify-center">
+                  <PaginationComponent
+                    currentPage={pagination.completed}
+                    totalPages={completedPaginated.totalPages}
+                    onPageChange={handlePageChange}
+                  />
+                </div>
+              )}
+            </TabsContent>
+          </Tabs>
+
+          {typeof window !== "undefined" && window.innerWidth < 768 ? (
             <Drawer open={openCommand} onOpenChange={setOpenCommand}>
               <DrawerContent className="p-4 font-geist">
                 <DrawerHeader className="pb-4">
-                  <DrawerTitle>
-                    Search for onboarding
-                  </DrawerTitle>
+                  <DrawerTitle>Search for onboarding</DrawerTitle>
                   <DrawerDescription className="text-sm text-muted-foreground">
                     All onboarding tasks will appear below.
                   </DrawerDescription>
                 </DrawerHeader>
-
-                {/* Search Input */}
                 <Input
                   placeholder="Search onboarding tasks..."
                   value={searchQuery}
                   onChange={(e) => setSearchQuery(e.target.value)}
                   className="w-full rounded-sm border border-input focus-visible:ring-2 focus-visible:ring-blue-500 text-sm"
                 />
-
                 <ScrollArea className="mt-4 h-[200px]">
                   {filterTasks(tasks).length > 0 ? (
                     <div className="space-y-1.5 mt-3">
@@ -520,7 +430,9 @@ export default function Checklist() {
                           <div className="flex justify-between items-center">
                             <div className="flex items-center gap-2">
                               <BookOpen className="size-4" />
-                              <span className="font-medium xs:text-xs text-sm">{task.title}</span>
+                              <span className="font-medium xs:text-xs text-sm">
+                                {task.title}
+                              </span>
                               <Badge
                                 variant="secondary"
                                 className="w-fit mt-1 text-xs bg-blue-100 text-blue-700 dark:bg-blue-600/20 dark:text-blue-600 border-blue-700 xs:hidden lg:block"
@@ -528,11 +440,6 @@ export default function Checklist() {
                                 {task.category}
                               </Badge>
                             </div>
-                            {/*
-                          <span className="text-sm text-muted-foreground">
-                            Due: {task.dueDate}
-                          </span>
-                          */}
                           </div>
                         </div>
                       ))}
@@ -584,10 +491,10 @@ export default function Checklist() {
                 </CommandItem>
               </CommandList>
             </CommandDialog>
-          )
-        }
-      </div>
-    </section>
+          )}
+        </div>
+      </section>
+    </>
   )
 }
 
@@ -603,8 +510,8 @@ function TaskGrid({ tasks }) {
 
 function TaskCard({ task }) {
   return (
-    <Link to="">
-      <Card className="hover:shadow-md hover:border-gray-300 transition-colors dark:hover:border-blue-500 py-0 border shadow-none p-2 rounded-xl h-fit">
+    <ResponsiveDialog task={task}>
+      <Card className="hover:shadow-md hover:border-gray-300 transition-colors dark:hover:border-blue-500 py-0 border shadow-none p-2 rounded-xl h-fit cursor-pointer">
         <CardContent className="space-y-3 p-2 border border-gray-100 dark:border-gray-700/20 rounded-xl">
           <Badge
             variant="secondary"
@@ -623,16 +530,13 @@ function TaskCard({ task }) {
           <p className="text-sm text-muted-foreground leading-relaxed">{task.description}</p>
           <div className="flex items-center gap-2 text-sm pt-2">
             <Clock className="h-4 w-4 text-muted-foreground" />
-            <span className="">
-              Due Date:{" "}
-              <span className="text-foreground font-medium">{task.dueDate}</span>
+            <span>
+              Due Date: <span className="text-foreground font-medium">{task.dueDate}</span>
             </span>
           </div>
-
         </CardContent>
       </Card>
-
-    </Link>
+    </ResponsiveDialog>
   )
 }
 
